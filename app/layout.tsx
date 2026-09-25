@@ -6,6 +6,7 @@ import '../src/LightTheme.css'
 import '../src/Workflow.css'
 import '../src/TriggerFlow.css'
 import '../src/NewHomeSections.css'
+import '../src/ExperienceEnhancements.css'
 
 export const metadata: Metadata = {
   title: 'Brainboys AI — Brilliant minds. One team.',
