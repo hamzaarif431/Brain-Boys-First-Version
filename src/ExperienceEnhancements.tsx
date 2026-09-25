@@ -80,11 +80,11 @@ export function CRMSpotlight({ motion }: { motion: boolean }) {
           <div className="crm-orb crm-orb-one" />
           <div className="crm-orb crm-orb-two" />
           <div className="crm-logo-frame"><img src="/brainboys-crm-logo.png" alt="Brain Boys CRM brand mark" /></div>
-          <span className="crm-floating-note note-one">AI AUTOMATION <b>↗</b></span>
+          <span className="crm-floating-note note-one">AI AUTOMATION <b>↗︎</b></span>
           <span className="crm-floating-note note-two">EVERYTHING. CONNECTED.</span>
           <div className="crm-dashboard-card" aria-hidden="true">
             <div className="crm-dashboard-head"><span>⌘ &nbsp;Growth overview</span><small>LIVE SYSTEM</small></div>
-            <div className="crm-dashboard-stats"><p><small>Pipeline value</small><strong>$24,850</strong><em>↗ 18.6%</em></p><p><small>New leads</small><strong>128</strong><em>↗ 12.4%</em></p></div>
+            <div className="crm-dashboard-stats"><p><small>Pipeline value</small><strong>$24,850</strong><em>↗︎ 18.6%</em></p><p><small>New leads</small><strong>128</strong><em>↗︎ 12.4%</em></p></div>
             <div className="crm-dashboard-bars">{[34,47,42,61,54,70,63,81,73,90,84,100].map((height,index)=><i key={index} style={{height:`${height}%`}} />)}</div>
             <div className="crm-dashboard-foot"><span>● New lead &nbsp;32</span><span>● In conversation &nbsp;18</span><span>● Ready to close &nbsp;09</span></div>
           </div>
@@ -96,7 +96,7 @@ export function CRMSpotlight({ motion }: { motion: boolean }) {
         <h2 id="crm-title">Bright minds.<br/>Better systems.<br/><em>Bigger possibilities.</em></h2>
         <p>Your business has big ideas. Brainboys CRM builds the connected system that brings them to life — capturing leads, nurturing relationships, closing deals and keeping every customer journey moving.</p>
         <div className="crm-capabilities"><span>AI automation</span><span>GoHighLevel CRM</span><span>Custom development</span></div>
-        <a href="https://brainboyscrm.vercel.app/" target="_blank" rel="noopener noreferrer">Explore Brainboys CRM <span>↗</span></a>
+        <a href="https://brainboyscrm.vercel.app/" target="_blank" rel="noopener noreferrer">Explore Brainboys CRM <span>↗︎</span></a>
       </div>
     </div>
     <div className="crm-theme-cue"><span>SCROLL-RESPONSIVE BRAND MODE</span><i/><span>POWERED BY HIGHLEVEL</span></div>
@@ -122,8 +122,8 @@ export function SiteFooter({ isHome, motion, onToggleMotion, bookingHref }: { is
         </div>
       </div>
       <div className="footer-column"><span>PAGES</span><a href="/">Home</a><a href="/services">Services</a><a href="/hire-a-team">Hire a team</a><a href="/automation">Automation</a><a href="/contact">Contact</a></div>
-      <div className="footer-column"><span>SERVICES</span><a href="/services">Development</a><a href="/automation">AI & automation</a><a href="/services">Growth & creative</a><a href="https://brainboyscrm.vercel.app/" target="_blank" rel="noopener noreferrer">GoHighLevel CRM ↗</a></div>
-      <div className="footer-column footer-contact"><span>LET&apos;S CONNECT</span><p>Worldwide team<br/>Working remotely</p><a href="mailto:hello@brainboys.ai">hello@brainboys.ai</a><a className="footer-call" href={bookingHref}>Book a strategy call <b>↗</b></a></div>
+      <div className="footer-column"><span>SERVICES</span><a href="/services">Development</a><a href="/automation">AI & automation</a><a href="/services">Growth & creative</a><a href="https://brainboyscrm.vercel.app/" target="_blank" rel="noopener noreferrer">GoHighLevel CRM ↗︎</a></div>
+      <div className="footer-column footer-contact"><span>LET&apos;S CONNECT</span><p>Worldwide team<br/>Working remotely</p><a href="mailto:hello@brainboys.ai">hello@brainboys.ai</a><a className="footer-call" href={bookingHref}>Book a strategy call <b className="ui-arrow" aria-hidden="true"/></a></div>
     </div>
     <div className="footer-word" aria-hidden="true">brainboys<span>®</span></div>
     <div className="footer-bottom"><span>© 2026 Brainboys AI. All rights reserved.</span><span>HUMAN INGENUITY. AMPLIFIED.</span><div><button aria-pressed={motion} onClick={onToggleMotion}>Motion {motion ? 'on' : 'off'} <i className={motion ? 'on' : ''}/></button><a href={isHome ? '#home' : '#main-content'}>Back to top ↑</a></div></div>

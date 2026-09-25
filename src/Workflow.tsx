@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 const steps = [
   {
-    label: '01 — THE SIGNAL', type: 'TRIGGER', node: 'Webhook', icon: '↗', status: 'Listening',
+    label: '01 — THE SIGNAL', type: 'TRIGGER', node: 'Webhook', icon: '↗︎', status: 'Listening',
     title: 'A request comes in.',
     text: 'Your form, store or app sends one clean event. No copying, chasing or checking required.',
     tools: ['Web Development', 'Shopify'],
@@ -46,22 +46,51 @@ const connectorPaths = [
 
 export default function Workflow({ motion = true }: { motion?: boolean }) {
   const sectionRef = useRef<HTMLElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
   const frameProgress = useRef(0)
 
-  const seekTo = (progress: number) => {
-    frameProgress.current = Math.max(0, Math.min(1, progress))
-    const video = videoRef.current
-    if (!video || !Number.isFinite(video.duration)) return
-    const target = Math.min(video.duration - .04, frameProgress.current * video.duration)
-    if (Math.abs(video.currentTime - target) > .025) video.currentTime = target
-  }
-
   useLayoutEffect(() => {
+    const canvas = canvasRef.current
+    const context = canvas?.getContext('2d')
+    const atlas = new Image()
+    const frameCount = 64
+    const frameSize = 480
+    const columns = 8
+    let atlasReady = false
+    let requestedFrame = 0
+    let renderedFrame = -1
+    let drawRequest = 0
+
+    const draw = () => {
+      drawRequest = 0
+      if (!canvas || !context || !atlasReady || requestedFrame === renderedFrame) return
+      const column = requestedFrame % columns
+      const row = Math.floor(requestedFrame / columns)
+      context.imageSmoothingEnabled = true
+      context.imageSmoothingQuality = 'high'
+      context.clearRect(0, 0, canvas.width, canvas.height)
+      context.drawImage(atlas, column * frameSize, row * frameSize, frameSize, frameSize, 0, 0, canvas.width, canvas.height)
+      renderedFrame = requestedFrame
+    }
+    const seekTo = (progress: number) => {
+      frameProgress.current = Math.max(0, Math.min(1, progress))
+      requestedFrame = Math.round(frameProgress.current * (frameCount - 1))
+      if (atlasReady && !drawRequest) drawRequest = window.requestAnimationFrame(draw)
+    }
+    atlas.decoding = 'async'
+    atlas.onload = () => {
+      atlasReady = true
+      seekTo(frameProgress.current)
+    }
+    atlas.src = '/brain-boys-logo-atlas.webp'
+
+    const cleanCanvas = () => {
+      atlas.onload = null
+      if (drawRequest) window.cancelAnimationFrame(drawRequest)
+    }
     if (!motion || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const video = videoRef.current
-      if (video && Number.isFinite(video.duration)) video.currentTime = video.duration - .04
-      return
+      seekTo(1)
+      return cleanCanvas
     }
     const mm = gsap.matchMedia()
 
@@ -141,7 +170,10 @@ export default function Workflow({ motion = true }: { motion?: boolean }) {
       return () => triggers.forEach(trigger => trigger.kill())
     })
 
-    return () => mm.revert()
+    return () => {
+      mm.revert()
+      cleanCanvas()
+    }
   }, [motion])
 
   return <section ref={sectionRef} className={'trigger-flow' + (!motion ? ' trigger-flow-static' : '')} id="business-in-motion" aria-labelledby="trigger-title">
@@ -171,10 +203,8 @@ export default function Workflow({ motion = true }: { motion?: boolean }) {
       </div>
       <div className="tf2-finale-scroll">
         <div className="tf2-finale">
-          <video ref={videoRef} className="tf2-gif" muted playsInline preload="auto" aria-label="Brainboys team and connected nodes forming the Brainboys name" onLoadedMetadata={event => { const video = event.currentTarget; video.currentTime = !motion || window.matchMedia('(prefers-reduced-motion: reduce)').matches ? video.duration - .04 : Math.min(video.duration - .04, frameProgress.current * video.duration) }}>
-            <source src="/brain-boys-future-logo-scroll.mp4" type="video/mp4" />
-          </video>
-          <a href="/contact?roles=Business%20Automation">Build my workflow <span>↗</span></a>
+          <canvas ref={canvasRef} className="tf2-gif" width="960" height="960" role="img" aria-label="Brainboys team and connected nodes forming the Brainboys name" />
+          <a href="/contact?roles=Business%20Automation">Build my workflow <span className="ui-arrow" aria-hidden="true" /></a>
         </div>
       </div>
       <div className="tf2-progress"><span className="tf2-progress-line"><span className="tf2-progress-fill" /></span><b>SCROLL TO RUN WORKFLOW</b></div>

@@ -12,13 +12,13 @@ const people = [
 export function PeopleSection() {
   return <section className="people-section section" id="experts" aria-labelledby="people-title">
     <div className="section-top reveal"><span className="eyebrow">04 / THE PEOPLE BEHIND THE POSSIBILITY</span><span className="muted">People first. Powerful work follows.</span></div>
-    <div className="people-heading reveal"><div><h2 id="people-title">The people behind<br/><span className="serif">the work.</span></h2><p>A senior core team, plus specialists matched to your stack. Every project starts with people who know how to move it forward.</p></div><a className="text-link" href="/contact">Meet your next team ↗</a></div>
+    <div className="people-heading reveal"><div><h2 id="people-title">The people behind<br/><span className="serif">the work.</span></h2><p>A senior core team, plus specialists matched to your stack. Every project starts with people who know how to move it forward.</p></div><a className="text-link" href="/contact">Meet your next team ↗︎</a></div>
     <div className="people-grid">{people.map((person, index) => <article className="people-card reveal" key={person.name}>
       <img src={person.image} alt={`${person.name}, ${person.role} at Brainboys AI`} loading="lazy" width="640" height="800" />
       <div className="people-card-shade" />
       <span className="people-card-number">0{index + 1}</span>
       <div className="people-card-copy"><span className="people-card-role">{person.role}</span><h3>{person.name}</h3><p>Part of the core delivery team — matched to your stack from day one.</p></div>
-      <span className="people-card-arrow" aria-hidden="true">↗</span>
+      <span className="people-card-arrow" aria-hidden="true">↗︎</span>
     </article>)}</div>
   </section>
 }
@@ -34,15 +34,15 @@ export function PricingSection() {
     <div className="section-top reveal"><span className="eyebrow">05 / YOUR TEAM, YOUR TERMS</span><span className="muted">A plan shaped by your priorities.</span></div>
     <div className="pricing-heading reveal"><div><h2 id="pricing-title">Support that fits.<br/><span className="serif">Space to grow.</span></h2><p>Choose the shape of your team. We&apos;ll agree the scope, availability and monthly price with you before work begins.</p></div><span className="pricing-heading-mark">✳</span></div>
     <div className="pricing-grid">{plans.map((plan, index) => <article className={`pricing-card reveal${index === 1 ? ' pricing-card-featured' : ''}`} key={plan.name}>
-      <div className="pricing-card-top"><span>{plan.number} / {plan.tag}</span><span>↗</span></div>
+      <div className="pricing-card-top"><span>{plan.number} / {plan.tag}</span><span>↗︎</span></div>
       <h3>{plan.name}</h3><p>{plan.description}</p>
       <div className="pricing-price"><strong>Custom</strong><span>monthly proposal</span></div>
       <div className="pricing-divider" />
       <span className="pricing-includes">WHAT&apos;S INCLUDED</span>
       <ul>{plan.features.map(feature => <li key={feature}><span>✓</span>{feature}</li>)}</ul>
-      <a href={plan.href}>{plan.action}<span>↗</span></a>
+      <a href={plan.href}>{plan.action}<span>↗︎</span></a>
     </article>)}</div>
-    <div className="pricing-bottom reveal"><span>✧</span><p>Need one role, a whole pod, or something in between? We&apos;ll tailor the proposal to the work — and make the terms clear from day one.</p><a href="#book-calendar">Let&apos;s scope it together ↗</a></div>
+    <div className="pricing-bottom reveal"><span>✧</span><p>Need one role, a whole pod, or something in between? We&apos;ll tailor the proposal to the work — and make the terms clear from day one.</p><a href="#book-calendar">Let&apos;s scope it together ↗︎</a></div>
   </section>
 }
 
@@ -69,7 +69,7 @@ export function VideoTestimonialsSection() {
       <div className="story-media">{playing === story.id ? <><iframe src={`https://player.vimeo.com/video/${story.id}?autoplay=1`} title={`Client video testimonial ${index + 1}`} allow="autoplay; fullscreen; picture-in-picture" allowFullScreen /><button type="button" className="story-close" aria-label={`Close client testimonial ${index + 1}`} onClick={() => setPlaying(null)}>×</button></> : <>
         <img src={story.image} alt={`Client testimonial video ${index + 1}`} loading="lazy" width="640" height="800"/>
         <div className="story-shade" />
-        <span className="story-number">0{index + 1}</span><span className="story-corner" aria-hidden="true">↗</span>
+        <span className="story-number">0{index + 1}</span><span className="story-corner" aria-hidden="true">↗︎</span>
         <button type="button" className="story-play" aria-label={`Play client testimonial ${index + 1}`} onClick={() => setPlaying(story.id)}><span>▶</span><b>PLAY STORY</b></button>
         <div className="story-card-copy"><span className="story-card-role">CLIENT VIDEO STORY</span><h3>{story.title}</h3><p>Hear the story in their own words.</p></div>
       </>}</div>
@@ -94,7 +94,7 @@ const directory = 'https://directory.gohighlevel.com/pakistan/karachi/certified-
 export function CertificationSection() {
   return <section className="certification-section" id="certifications" aria-labelledby="certification-title">
     <div className="certification-inner section"><div className="section-top reveal"><span className="eyebrow">07 / CERTIFIED EXPERTISE</span><span className="muted">Credentials you can check.</span></div>
-      <div className="certification-feature reveal"><div className="certification-copy"><span className="certification-kicker"><i/> TOP-RATED GHL EXPERTISE</span><h2 id="certification-title">The work is personal.<br/><span className="serif">The credentials are real.</span></h2><p>From CRM architecture to automation and growth campaigns, our HighLevel capability is backed by certification and specialist badges earned through the platform.</p><a href={directory} target="_blank" rel="noopener noreferrer">View Ahsan&apos;s certified profile <span>↗</span></a></div><div className="certification-hero-badge"><div className="certification-orbit"/><img src="/cert-1.png" alt="HighLevel Certified Admin badge" width="260" height="260"/><span>HIGHLEVEL<br/>CERTIFIED ADMIN</span></div></div>
+      <div className="certification-feature reveal"><div className="certification-copy"><span className="certification-kicker"><i/> TOP-RATED GHL EXPERTISE</span><h2 id="certification-title">The work is personal.<br/><span className="serif">The credentials are real.</span></h2><p>From CRM architecture to automation and growth campaigns, our HighLevel capability is backed by certification and specialist badges earned through the platform.</p><a href={directory} target="_blank" rel="noopener noreferrer">View Ahsan&apos;s certified profile <span>↗︎</span></a></div><div className="certification-hero-badge"><div className="certification-orbit"/><img src="/cert-1.png" alt="HighLevel Certified Admin badge" width="260" height="260"/><span>HIGHLEVEL<br/>CERTIFIED ADMIN</span></div></div>
     </div>
     <div className="badge-marquee" aria-label="HighLevel certification and skill badges"><div className="badge-track">{[...badges, ...badges].map((badge, index) => <a className="badge-item" href={directory} target="_blank" rel="noopener noreferrer" key={`${badge.name}-${index}`} aria-label={`${badge.name} badge — view certified profile`} aria-hidden={index >= badges.length} tabIndex={index >= badges.length ? -1 : 0}><img src={badge.image} alt={index < badges.length ? badge.name : ''} loading="lazy" width="120" height="120"/><span>{badge.name}</span></a>)}</div></div>
   </section>

@@ -38,7 +38,7 @@
 .tf2-step.is-active .tf2-status-complete{display:none}
 .tf2-finale-scroll{position:absolute;inset:0;z-index:5;pointer-events:none}
 .tf2-finale-scroll .tf2-finale{pointer-events:auto}
-.tf2-gif{background:#f7f3ff}
+.tf2-gif{background:#f7f3ff url('/brain-boys-logo-poster.webp') center/contain no-repeat;contain:layout paint;transform:translateZ(0);backface-visibility:hidden}
 @media(max-width:800px){
   .tf2-sticky{overflow:visible;padding-bottom:0}
   .tf2-finale-scroll{position:relative;inset:auto;height:245svh;pointer-events:auto}
