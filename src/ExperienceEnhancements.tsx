@@ -49,8 +49,8 @@ export function CRMSpotlight({ motion }: { motion: boolean }) {
     const deactivate = () => document.documentElement.classList.remove('crm-theme-active')
     const trigger = ScrollTrigger.create({
       trigger: section,
-      start: 'top 68%',
-      end: 'bottom 32%',
+      start: 'top top',
+      end: 'bottom top+=100',
       onEnter: activate,
       onEnterBack: activate,
       onLeave: deactivate,
@@ -59,10 +59,7 @@ export function CRMSpotlight({ motion }: { motion: boolean }) {
     let ctx: gsap.Context | undefined
     if (motion && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       ctx = gsap.context(() => {
-        gsap.from('.crm-brand-visual', { y: 70, rotate: -5, opacity: 0, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: section, start: 'top 75%' } })
         gsap.from('.crm-copy > *', { y: 34, opacity: 0, duration: .8, stagger: .09, ease: 'power3.out', scrollTrigger: { trigger: section, start: 'top 73%' } })
-        gsap.to('.crm-orb-one', { y: -28, x: 18, rotation: 14, scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: 1 } })
-        gsap.to('.crm-orb-two', { y: 36, x: -22, rotation: -12, scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: 1 } })
       }, section)
     }
     return () => {
@@ -75,18 +72,17 @@ export function CRMSpotlight({ motion }: { motion: boolean }) {
   return <section className="crm-spotlight" id="crm-platform" ref={sectionRef} aria-labelledby="crm-title">
     <div className="crm-noise" aria-hidden="true" />
     <div className="crm-shell">
-      <div className="crm-brand-visual reveal">
+      <div className="crm-brand-visual">
         <div className="crm-logo-stage">
-          <div className="crm-orb crm-orb-one" />
-          <div className="crm-orb crm-orb-two" />
-          <div className="crm-logo-frame"><img src="/brainboys-crm-logo.png" alt="Brain Boys CRM brand mark" /></div>
+          <div className="crm-logo-frame"><img src="/brainboys-crm-mark-transparent.png" alt="Brain Boys CRM brand mark" /></div>
           <span className="crm-floating-note note-one">AI AUTOMATION <b>↗︎</b></span>
           <span className="crm-floating-note note-two">EVERYTHING. CONNECTED.</span>
           <div className="crm-dashboard-card" aria-hidden="true">
-            <div className="crm-dashboard-head"><span>⌘ &nbsp;Growth overview</span><small>LIVE SYSTEM</small></div>
-            <div className="crm-dashboard-stats"><p><small>Pipeline value</small><strong>$24,850</strong><em>↗︎ 18.6%</em></p><p><small>New leads</small><strong>128</strong><em>↗︎ 12.4%</em></p></div>
-            <div className="crm-dashboard-bars">{[34,47,42,61,54,70,63,81,73,90,84,100].map((height,index)=><i key={index} style={{height:`${height}%`}} />)}</div>
-            <div className="crm-dashboard-foot"><span>● New lead &nbsp;32</span><span>● In conversation &nbsp;18</span><span>● Ready to close &nbsp;09</span></div>
+            <div className="crm-dashboard-head"><span><b>⌘</b> Growth overview</span><small>Illustrative dashboard</small></div>
+            <div className="crm-dashboard-stats"><p><small>Pipeline value</small><strong>$24,850 <em>↗ 18.6%</em></strong></p><p><small>New leads</small><strong>128 <em>↗ 12.4%</em></strong></p></div>
+            <div className="crm-chart"><div className="crm-chart-grid"/>{[26,38,32,49,44,60,52,75,68,83,78,96].map((height,index)=><i key={index} style={{height:`${height}%`}}><span/></i>)}</div>
+            <div className="crm-chart-labels"><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span></div>
+            <div className="crm-dashboard-foot"><span><i/>New lead <b>32</b></span><span><i/>In conversation <b>18</b></span><span><i/>Ready to close <b>09</b></span></div>
           </div>
         </div>
       </div>
@@ -100,6 +96,32 @@ export function CRMSpotlight({ motion }: { motion: boolean }) {
       </div>
     </div>
     <div className="crm-theme-cue"><span>SCROLL-RESPONSIVE BRAND MODE</span><i/><span>POWERED BY HIGHLEVEL</span></div>
+  </section>
+}
+
+export function ReviewsCTA({ href = '#video-stories', label = 'See their stories', crmLeadIn = false }: { href?: string; label?: string; crmLeadIn?: boolean } = {}) {
+  const sectionRef = useRef<HTMLElement>(null)
+  useLayoutEffect(() => {
+    const section = sectionRef.current
+    if (!section || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const ctx = gsap.context(() => {
+      const mobile = window.matchMedia('(max-width: 650px)').matches
+      gsap.timeline({ scrollTrigger: { trigger: section, start: 'top 100px', end: 'bottom bottom', scrub: 1 } })
+        .to('.reviews-cta-media', { width: '100vw', height: mobile ? '46.5vw' : '100vh', borderRadius: 0, ease: 'none' }, 0)
+        .fromTo('.reviews-cta-content', { yPercent: mobile ? 82 : 135, opacity: 0 }, { yPercent: 0, opacity: 1, ease: 'power3.out' }, .55)
+    }, section)
+    return () => ctx.revert()
+  }, [])
+  return <section className={'reviews-cta' + (crmLeadIn ? ' crm-lead-in' : '')} id="reviews-proof" ref={sectionRef} aria-labelledby="reviews-cta-title">
+    <div className="reviews-cta-sticky">
+      <div className="reviews-cta-media"><img className="reviews-cta-art" src="/brainboys-reviews-doodle.webp" alt="A doodle wall of five-star client reviews for the Brainboys team"/></div>
+      <div className="reviews-cta-content">
+        <span className="reviews-cta-kicker"><i/> PROOF, IN THEIR WORDS</span>
+        <h2 id="reviews-cta-title">Good work gets <em>talked about.</em></h2>
+        <p>Real feedback. Real partnerships. A team trusted to keep the work moving.</p>
+        <a href={href}>{label} <span className="ui-arrow" aria-hidden="true"/></a>
+      </div>
+    </div>
   </section>
 }
 
@@ -121,12 +143,12 @@ export function SiteFooter({ isHome, motion, onToggleMotion, bookingHref }: { is
           <a href="https://brainboyscrm.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Visit Brainboys CRM"><SocialIcon name="globe"/></a>
         </div>
       </div>
-      <div className="footer-column"><span>PAGES</span><a href="/">Home</a><a href="/services">Services</a><a href="/hire-a-team">Hire a team</a><a href="/automation">Automation</a><a href="/contact">Contact</a></div>
+      <div className="footer-column"><span>PAGES</span><a href="/">Home</a><a href="/services">Services</a><a href="/hire-a-team">Hire a team</a><a href="/automation">Automation</a><a href="/portfolio">Portfolio</a><a href="/contact">Contact</a></div>
       <div className="footer-column"><span>SERVICES</span><a href="/services">Development</a><a href="/automation">AI & automation</a><a href="/services">Growth & creative</a><a href="https://brainboyscrm.vercel.app/" target="_blank" rel="noopener noreferrer">GoHighLevel CRM ↗︎</a></div>
+      <div className="footer-column"><span>LEGAL</span><a href="/privacy-policy">Privacy policy</a><a href="/terms-and-conditions">Terms & conditions</a></div>
       <div className="footer-column footer-contact"><span>LET&apos;S CONNECT</span><p>Worldwide team<br/>Working remotely</p><a href="mailto:hello@brainboys.ai">hello@brainboys.ai</a><a className="footer-call" href={bookingHref}>Book a strategy call <b className="ui-arrow" aria-hidden="true"/></a></div>
     </div>
-    <div className="footer-word" aria-hidden="true">brainboys<span>®</span></div>
-    <div className="footer-bottom"><span>© 2026 Brainboys AI. All rights reserved.</span><span>HUMAN INGENUITY. AMPLIFIED.</span><div><button aria-pressed={motion} onClick={onToggleMotion}>Motion {motion ? 'on' : 'off'} <i className={motion ? 'on' : ''}/></button><a href={isHome ? '#home' : '#main-content'}>Back to top ↑</a></div></div>
+    <div className="footer-bottom"><span>© 2026 Brainboys AI. All rights reserved.</span><span>HUMAN INGENUITY. AMPLIFIED.</span><div><a href="/privacy-policy">Privacy</a><a href="/terms-and-conditions">Terms</a><button aria-pressed={motion} onClick={onToggleMotion}>Motion {motion ? 'on' : 'off'} <i className={motion ? 'on' : ''}/></button><a href={isHome ? '#home' : '#main-content'}>Back to top ↑</a></div></div>
   </footer>
 }
 

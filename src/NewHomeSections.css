@@ -51,9 +51,10 @@
 .story-card{flex:0 0 min(31%,370px);min-width:295px;aspect-ratio:4/5;overflow:hidden;border-radius:18px;background:#251633;scroll-snap-align:start;isolation:isolate;box-shadow:0 8px 25px #3f1a5c0a;transition:transform .45s,box-shadow .45s}
 .story-card:hover{transform:translateY(-6px);box-shadow:0 20px 38px #3f1a5c20}
 .story-media{position:relative;width:100%;height:100%;overflow:hidden;background:#dfd4e8}
-.story-media>img,.story-media>iframe{display:block;width:100%;height:100%;object-fit:cover;border:0}
-.story-media>img{object-position:center 27%;filter:grayscale(.65);transition:transform .75s,filter .6s}
-.story-card:hover .story-media>img{transform:scale(1.055);filter:grayscale(0)}
+.story-media>video{display:block;width:100%;height:100%;object-fit:cover;border:0;background:#1d1128}
+.story-media>video:not(.story-preview){object-fit:contain}
+.story-media>.story-preview{object-position:center 52%;filter:grayscale(.25) saturate(.88);transition:transform .75s,filter .6s}
+.story-card:hover .story-media>.story-preview{transform:scale(1.055);filter:grayscale(0) saturate(1)}
 .story-shade{position:absolute;inset:20% 0 0;background:linear-gradient(transparent 18%,#20112d22 48%,#1e1028e8 100%);pointer-events:none}
 .story-number{position:absolute;left:22px;top:20px;z-index:2;display:grid;place-items:center;width:34px;height:34px;border:1px solid #ffffffa8;border-radius:50%;background:#ffffffc7;color:#60328e;font:700 10px 'DM Sans',sans-serif;backdrop-filter:blur(8px)}
 .story-corner{position:absolute;right:22px;top:22px;z-index:2;display:grid;place-items:center;width:35px;height:35px;border:1px solid #fff9;border-radius:50%;color:#fff;font-size:17px}

@@ -47,10 +47,13 @@ export function PricingSection() {
 }
 
 const stories = [
-  { id: '1042974934', image: '/testimonial-1.jpg', title: 'Systems that finally feel simple.' },
-  { id: '1042975177', image: '/testimonial-2.jpg', title: 'Reliable support, without the chase.' },
-  { id: '1042975600', image: '/testimonial-3.jpg', title: 'A team that keeps momentum moving.' },
-  { id: '1042975775', image: '/testimonial-4.jpg', title: 'More room to focus on the business.' },
+  { id: 'five-websites', video: '/testimonials/five-websites.mp4', thumbAt: 5, title: 'Five websites. One trusted team.' },
+  { id: 'website-funnel', video: '/testimonials/website-funnel.mp4', thumbAt: 5, title: 'From website to high-converting funnel.' },
+  { id: 'sync-review', video: '/testimonials/sync-review.mp4', thumbAt: 5, title: 'A partnership built to keep moving.' },
+  { id: 'jennifer', video: '/testimonials/jennifer.mp4', thumbAt: 10, title: 'Jennifer’s experience with the team.' },
+  { id: 'website-support', video: '/testimonials/website-support.mp4', thumbAt: 5, title: 'Website support that stays with you.' },
+  { id: 'video-five', video: '/testimonials/video-five.mp4', thumbAt: 10, title: 'Real results, in their own words.' },
+  { id: 'dedication', video: '/testimonials/dedication.mp4', thumbAt: 5, title: 'Dedication clients can feel.' },
 ]
 
 export function VideoTestimonialsSection() {
@@ -64,10 +67,10 @@ export function VideoTestimonialsSection() {
   }
   return <section className="video-stories section" id="video-stories" aria-labelledby="stories-title">
     <div className="section-top reveal"><span className="eyebrow">06 / CLIENT VIDEO STORIES</span><span className="muted">Real voices. Real working relationships.</span></div>
-    <div className="stories-heading reveal"><div><h2 id="stories-title">Don&apos;t take our word.<br/><span className="serif">Take theirs.</span></h2><p>Hear from clients who have worked with our team through SyncJourney.</p></div><div className="stories-controls"><button type="button" aria-label="Previous video testimonial" onClick={() => slide(-1)}>←</button><button type="button" aria-label="Next video testimonial" onClick={() => slide(1)}>→</button></div></div>
+    <div className="stories-heading reveal"><div><h2 id="stories-title">Don&apos;t take our word.<br/><span className="serif">Take theirs.</span></h2><p>Hear directly from clients who have worked with the Brainboys team.</p></div><div className="stories-controls"><button type="button" aria-label="Previous video testimonial" onClick={() => slide(-1)}>←</button><button type="button" aria-label="Next video testimonial" onClick={() => slide(1)}>→</button></div></div>
     <div className="stories-strip" ref={stripRef} tabIndex={0} aria-label="Client video testimonials. Scroll horizontally to see more.">{stories.map((story, index) => <article className={'story-card' + (playing === story.id ? ' is-playing' : '')} key={story.id}>
-      <div className="story-media">{playing === story.id ? <><iframe src={`https://player.vimeo.com/video/${story.id}?autoplay=1`} title={`Client video testimonial ${index + 1}`} allow="autoplay; fullscreen; picture-in-picture" allowFullScreen /><button type="button" className="story-close" aria-label={`Close client testimonial ${index + 1}`} onClick={() => setPlaying(null)}>×</button></> : <>
-        <img src={story.image} alt={`Client testimonial video ${index + 1}`} loading="lazy" width="640" height="800"/>
+      <div className="story-media">{playing === story.id ? <><video src={story.video} title={`Client video testimonial ${index + 1}`} controls autoPlay playsInline preload="metadata"/><button type="button" className="story-close" aria-label={`Close client testimonial ${index + 1}`} onClick={() => setPlaying(null)}>×</button></> : <>
+        <video className="story-preview" src={`${story.video}#t=${story.thumbAt}`} aria-label={`Preview for client testimonial ${index + 1}`} muted playsInline preload="auto"/>
         <div className="story-shade" />
         <span className="story-number">0{index + 1}</span><span className="story-corner" aria-hidden="true">↗︎</span>
         <button type="button" className="story-play" aria-label={`Play client testimonial ${index + 1}`} onClick={() => setPlaying(story.id)}><span>▶</span><b>PLAY STORY</b></button>
