@@ -99,27 +99,29 @@ export function CRMSpotlight({ motion }: { motion: boolean }) {
   </section>
 }
 
-export function ReviewsCTA({ href = '#video-stories', label = 'See their stories', crmLeadIn = false }: { href?: string; label?: string; crmLeadIn?: boolean } = {}) {
+export function ReviewsCTA({ href = '/contact?roles=AI%20Voice%20Bot', crmLeadIn = false }: { href?: string; crmLeadIn?: boolean } = {}) {
   const sectionRef = useRef<HTMLElement>(null)
   useLayoutEffect(() => {
     const section = sectionRef.current
     if (!section || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const ctx = gsap.context(() => {
       const mobile = window.matchMedia('(max-width: 650px)').matches
-      gsap.timeline({ scrollTrigger: { trigger: section, start: 'top 100px', end: 'bottom bottom', scrub: 1 } })
-        .to('.reviews-cta-media', { width: '100vw', height: mobile ? '46.5vw' : '100vh', borderRadius: 0, ease: 'none' }, 0)
-        .fromTo('.reviews-cta-content', { yPercent: mobile ? 82 : 135, opacity: 0 }, { yPercent: 0, opacity: 1, ease: 'power3.out' }, .55)
+      const timeline = gsap.timeline({ scrollTrigger: { trigger: section, start: mobile ? 'top 82px' : 'top 100px', end: mobile ? '+=100' : 'bottom bottom', scrub: 1 } })
+        .to('.reviews-cta-media', { width: '100vw', height: mobile ? '46.5vw' : '100vh', borderRadius: 0, duration: mobile ? .3 : 1, ease: 'none' })
+        .to('.reviews-cta-sticky', { height: mobile ? '46.5vw' : '100vh', duration: mobile ? .3 : 1, ease: 'none' }, '<')
+        .fromTo('.reviews-cta-content', { y: mobile ? 90 : 150, scale: .86, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: mobile ? .2 : .34, ease: 'power3.out' }, '>')
+      if (mobile) timeline.to('.reviews-cta-content', { opacity: 1, duration: .5, ease: 'none' }, '>')
     }, section)
     return () => ctx.revert()
   }, [])
-  return <section className={'reviews-cta' + (crmLeadIn ? ' crm-lead-in' : '')} id="reviews-proof" ref={sectionRef} aria-labelledby="reviews-cta-title">
+  return <section className={'reviews-cta' + (crmLeadIn ? ' crm-lead-in' : '')} id="reviews-proof" ref={sectionRef} aria-label="Client reviews and AI agent call">
     <div className="reviews-cta-sticky">
       <div className="reviews-cta-media"><img className="reviews-cta-art" src="/brainboys-reviews-doodle.webp" alt="A doodle wall of five-star client reviews for the Brainboys team"/></div>
       <div className="reviews-cta-content">
-        <span className="reviews-cta-kicker"><i/> PROOF, IN THEIR WORDS</span>
-        <h2 id="reviews-cta-title">Good work gets <em>talked about.</em></h2>
-        <p>Real feedback. Real partnerships. A team trusted to keep the work moving.</p>
-        <a href={href}>{label} <span className="ui-arrow" aria-hidden="true"/></a>
+        <a className="reviews-agent-call" href={href} aria-label="Talk with Our AI Agent">
+          <span className="reviews-agent-call-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.8 3.5 3.1 4.8 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.7 21 3 13.3 3 3.7c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.2Z"/></svg></span>
+          <span>Talk with Our<br/><strong>AI Agent</strong></span>
+        </a>
       </div>
     </div>
   </section>

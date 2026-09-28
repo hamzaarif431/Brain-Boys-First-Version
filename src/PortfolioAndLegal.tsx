@@ -48,7 +48,7 @@ export function PortfolioPage() {
         <div className="portfolio-card-meta"><span>{String(index + 1).padStart(2, '0')} / {item.category.toUpperCase()}</span><h3>{item.label}</h3><b>SCROLL PREVIEW ↓</b></div>
       </article>)}</div>
     </section>
-    <ReviewsCTA href="#book-calendar" label="Book a strategy call"/>
+    <ReviewsCTA/>
     <BookingSection/>
   </>
 }
