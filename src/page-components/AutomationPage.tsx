@@ -1,0 +1,8 @@
+'use client'
+import Workflow from '../Workflow'
+import AutomationExperience from '../AutomationExperience'
+import { useSiteMotion } from '../App'
+import { PageIntro, EndCTA } from './PageShared'
+
+export function AutomationPage(){const {motion}=useSiteMotion();return <><PageIntro number="02" kicker="AI & automation" title="Less repetition." accent="More possibility." description="Turn disconnected tools and manual handoffs into an intelligent workflow. Built around your business. Kept in human hands."><a className="text-link" href="#business-in-motion">See the connections come together ↓</a></PageIntro><Workflow motion={motion}/><AutomationExperience motion={motion}/><section className="automation-outcomes section"><div className="section-heading"><h2>Give your systems<br/><span className="serif">a common language.</span></h2><p>Automate the repeatable.<br/>Keep people in the decisions that matter.</p></div><div className="outcome-grid">{[['01','Lead to relationship','Connect forms, CRM and follow-ups so the next step is clear.','CRM & customer journeys'],['02','Question to answer','Put AI-assisted support and voice workflows alongside your team.','AI assistants & voice'],['03','Busywork to breathing room','Create reliable handoffs between the tools you already use.','Operations & integrations']].map(([n,t,p,s])=><article key={n}><span className="eyebrow">{n} / {s}</span><h3>{t}</h3><p>{p}</p><a href={'/contact?roles='+encodeURIComponent(s)}>Explore your workflow ↗︎</a></article>)}</div><div className="automation-note"><span>✳</span><p><strong>Useful automation starts with understanding.</strong><br/>We map the process, test the exceptions, and give your team clear controls and documentation.</p></div></section><EndCTA/></>}
+
