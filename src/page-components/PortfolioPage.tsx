@@ -1,8 +1,12 @@
 'use client'
-import { useState } from 'react'
+import { useLayoutEffect, useMemo, useRef, useState } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { PageIntro } from './PageShared'
 import { ReviewsCTA } from '../ExperienceEnhancements'
 import { BookingSection } from '../NewHomeSections'
+
+gsap.registerPlugin(ScrollTrigger)
 
 type PortfolioCategory = 'GHL' | 'WordPress' | 'Ecommerce' | 'Custom Solutions' | 'Dashboards'
 type PortfolioItem = { category: PortfolioCategory; src: string; label: string }
@@ -30,7 +34,27 @@ const filters: Array<'All' | PortfolioCategory> = ['All', 'GHL', 'WordPress', 'E
 
 export function PortfolioPage() {
   const [filter, setFilter] = useState<(typeof filters)[number]>('All')
-  const visible = filter === 'All' ? portfolioItems : portfolioItems.filter(item => item.category === filter)
+  const gridRef = useRef<HTMLDivElement>(null)
+  const visible = useMemo(() => filter === 'All' ? portfolioItems : portfolioItems.filter(item => item.category === filter), [filter])
+
+  useLayoutEffect(() => {
+    const grid = gridRef.current
+    if (!grid) return
+
+    // Filtering changes the page height by several thousand pixels. Refresh after
+    // the browser has committed that layout so the following sticky CTA never
+    // keeps positions from the previous category.
+    let secondFrame = 0
+    const firstFrame = window.requestAnimationFrame(() => {
+      secondFrame = window.requestAnimationFrame(() => ScrollTrigger.refresh(true))
+    })
+
+    return () => {
+      window.cancelAnimationFrame(firstFrame)
+      window.cancelAnimationFrame(secondFrame)
+    }
+  }, [filter])
+
   return <>
     <PageIntro number="04" kicker="Portfolio" title="Built to move." accent="Made to matter." description="A selection of CRM systems, websites, ecommerce experiences, custom platforms and dashboards delivered by our team.">
       <a className="text-link" href="#portfolio-showcase">Explore the work ↓</a>
@@ -42,8 +66,8 @@ export function PortfolioPage() {
       </div>
       <div className="portfolio-filters" aria-label="Filter portfolio projects">{filters.map(name => <button key={name} aria-pressed={filter === name} onClick={() => setFilter(name)}>{name}<span>{name === 'All' ? portfolioItems.length : portfolioItems.filter(item => item.category === name).length}</span></button>)}</div>
       <p className="portfolio-count" role="status">Showing {visible.length} {filter === 'All' ? 'projects across every capability' : `${filter} projects`}</p>
-      <div className="portfolio-grid">{visible.map((item, index) => <article className="portfolio-card reveal" key={`${item.category}-${item.src}`} tabIndex={0}>
-        <div className="portfolio-browser"><div className="portfolio-browser-bar"><i/><i/><i/><span>brainboys / selected work</span></div><div className="portfolio-preview"><img src={item.src} alt={`${item.category} website project preview`} loading={index < 4 ? 'eager' : 'lazy'} /></div></div>
+      <div className="portfolio-grid" ref={gridRef}>{visible.map((item, index) => <article className="portfolio-card" key={`${item.category}-${item.src}`} tabIndex={0}>
+        <div className="portfolio-browser"><div className="portfolio-browser-bar"><i/><i/><i/><span>brainboys / selected work</span></div><div className="portfolio-preview"><img src={item.src} alt={`${item.category} website project preview`} loading={index < 2 ? 'eager' : 'lazy'} decoding="async" fetchPriority={index < 2 ? 'high' : 'low'} /></div></div>
         <div className="portfolio-card-meta"><span>{String(index + 1).padStart(2, '0')} / {item.category.toUpperCase()}</span><h3>{item.label}</h3><b>SCROLL PREVIEW ↓</b></div>
       </article>)}</div>
     </section>

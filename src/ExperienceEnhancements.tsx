@@ -106,7 +106,7 @@ export function ReviewsCTA({ href = '/contact?roles=AI%20Voice%20Bot', crmLeadIn
     if (!section || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const ctx = gsap.context(() => {
       const mobile = window.matchMedia('(max-width: 650px)').matches
-      const timeline = gsap.timeline({ scrollTrigger: { trigger: section, start: mobile ? 'top 82px' : 'top 100px', end: mobile ? '+=100' : 'bottom bottom', scrub: 1 } })
+      const timeline = gsap.timeline({ scrollTrigger: { trigger: section, start: mobile ? 'top 82px' : 'top 100px', end: mobile ? '+=100' : 'bottom bottom', scrub: 1, invalidateOnRefresh: true } })
         .to('.reviews-cta-media', { width: '100vw', height: mobile ? '46.5vw' : '100vh', borderRadius: 0, duration: mobile ? .3 : 1, ease: 'none' })
         .to('.reviews-cta-sticky', { height: mobile ? '46.5vw' : '100vh', duration: mobile ? .3 : 1, ease: 'none' }, '<')
         .fromTo('.reviews-cta-content', { y: mobile ? 90 : 150, scale: .86, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: mobile ? .2 : .34, ease: 'power3.out' }, '>')
