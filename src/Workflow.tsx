@@ -6,34 +6,34 @@ gsap.registerPlugin(ScrollTrigger)
 
 const steps = [
   {
-    label: '01 — THE SIGNAL', type: 'TRIGGER', node: 'Webhook', icon: '↗︎', status: 'Listening',
-    title: 'A request comes in.',
-    text: 'Your form, store or app sends one clean event. No copying, chasing or checking required.',
-    tools: ['Web Development', 'Shopify'],
+    label: '01 — SUBMIT YOUR BRIEF', type: 'PROJECT BRIEF', node: 'Request received', icon: '↗︎', status: 'Received',
+    title: 'Tell us what you need done.',
+    text: 'Share your project scope, from GHL and n8n automations to API integrations or web builds. No lengthy sales calls or monthly retainers.',
+    tools: ['GoHighLevel', 'Web Development'],
   },
   {
-    label: '02 — CAPTURE', type: 'CRM', node: 'Customer record', icon: '≡', status: 'Active',
-    title: 'Every detail lands in one place.',
-    text: 'The request becomes a complete record, ready for the team that will move it forward.',
-    tools: ['GoHighLevel', 'HubSpot'],
+    label: '02 — GET MATCHED', type: 'TEAM PLACEMENT', node: 'Experts assigned', icon: '≡', status: 'Assigned',
+    title: 'Your experts. Within 48 hours.',
+    text: 'Get a fixed scope, clear timeline, and exact cost upfront. We assign the right developers, automators, or marketers within 48 hours.',
+    tools: ['Fixed Pricing', 'Expert Team'],
   },
   {
-    label: '03 — DECIDE', type: 'AI ROUTER', node: 'Intelligent routing', icon: '✳', status: 'Active',
-    title: 'The right next move happens.',
-    text: 'An AI assistant qualifies the request and routes it to the right person at the right time.',
-    tools: ['AI Voice Bot', 'AI Employee'],
+    label: '03 — CONNECT YOUR TEAM', type: 'ONBOARDING', node: 'Team connected', icon: '✳', status: 'Connected',
+    title: 'Your team plugs right in.',
+    text: 'Your experts join your Slack, Teams, or ClickUp workspace for direct daily communication and seamless collaboration. No complicated setup.',
+    tools: ['Slack', 'Teams', 'ClickUp'],
   },
   {
-    label: '04 — COORDINATE', type: 'PROJECTS', node: 'Team handoff', icon: '⌘', status: 'Active',
-    title: 'Your team starts already aligned.',
-    text: 'A task, owner, brief and follow-up are created together. Everyone shares the same context.',
-    tools: ['AI Marketing', 'CRM Automation'],
+    label: '04 — MANAGED EXECUTION', type: 'PROJECT DELIVERY', node: 'Work in progress', icon: '⌘', status: 'Building',
+    title: 'We build. You stay focused.',
+    text: 'A dedicated Project Manager handles tasks, quality, and timelines while you track live progress. No micromanagement required.',
+    tools: ['Project Management', 'Live Tracking'],
   },
   {
-    label: '05 — CLOSE THE LOOP', type: 'DELIVERY', node: 'Outcome delivered', icon: '✓', status: 'Listening',
-    title: 'Delivery updates itself.',
-    text: 'Completion reaches the client and the result is recorded — ready for the next request.',
-    tools: ['Connected team', 'Clear next step'],
+    label: '05 — REPORT & SCALE', type: 'REPORTING', node: 'Progress delivered', icon: '✓', status: 'Delivered',
+    title: 'Full control. No surprises.',
+    text: 'Get weekly reports on completed work and hours used. Review deliverables, approve progress, and pause or scale whenever needed.',
+    tools: ['Weekly Reports', 'Flexible Scaling'],
   },
 ]
 
@@ -191,8 +191,8 @@ export default function Workflow({ motion = true }: { motion?: boolean }) {
   return <section ref={sectionRef} className={'trigger-flow' + (!motion ? ' trigger-flow-static' : '')} id="business-in-motion" aria-labelledby="trigger-title">
     <div className="tf2-sticky">
       <header className="tf2-heading">
-        <span className="eyebrow"><i /> LIVE AUTOMATION / THE BRAINBOYS WAY</span>
-        <h2 id="trigger-title">One trigger. <span className="serif">A whole business in motion.</span></h2>
+        <span className="eyebrow"><i /> Never pay for agency &quot;bench time&quot; again.</span>
+        <h2 id="trigger-title">How Brain Boys Works : <span className="serif">5 Steps to Pure Output</span></h2>
         <div className="tf2-heading-actions"><p>One scroll moves one handoff forward.</p>{motion && <button type="button" className="tf2-skip" onClick={skipAnimation}>Skip animation <span>→</span></button>}</div>
       </header>
       <div className="tf2-viewport">
@@ -216,10 +216,10 @@ export default function Workflow({ motion = true }: { motion?: boolean }) {
       <div className="tf2-finale-scroll">
         <div className="tf2-finale">
           <canvas ref={canvasRef} className="tf2-gif" width="960" height="960" role="img" aria-label="Brainboys team and connected nodes forming the Brainboys name" />
-          <a href="/contact?roles=Business%20Automation">Build my workflow <span className="ui-arrow" aria-hidden="true" /></a>
+          <a href="/contact">Start Your Project <span className="ui-arrow" aria-hidden="true" /></a>
         </div>
       </div>
-      <div className="tf2-progress"><span className="tf2-progress-line"><span className="tf2-progress-fill" /></span><b>SCROLL TO RUN WORKFLOW</b></div>
+      <div className="tf2-progress"><span className="tf2-progress-line"><span className="tf2-progress-fill" /></span><b>SCROLL TO SEE HOW WE WORK</b></div>
     </div>
   </section>
 }

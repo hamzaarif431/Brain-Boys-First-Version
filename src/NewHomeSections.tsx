@@ -11,7 +11,7 @@ const people = [
 
 export function PeopleSection() {
   return <section className="people-section section" id="experts" aria-labelledby="people-title">
-    <div className="section-top reveal"><span className="eyebrow">04 / THE PEOPLE BEHIND THE POSSIBILITY</span><span className="muted">People first. Powerful work follows.</span></div>
+    <div className="section-top reveal"><span className="eyebrow">THE PEOPLE BEHIND THE POSSIBILITY</span><span className="muted">People first. Powerful work follows.</span></div>
     <div className="people-heading reveal"><div><h2 id="people-title">The people behind<br/><span className="serif">the work.</span></h2><p>A senior core team, plus specialists matched to your stack. Every project starts with people who know how to move it forward.</p></div><a className="text-link" href="/contact">Meet your next team ↗︎</a></div>
     <div className="people-grid">{people.map((person, index) => <article className="people-card reveal" key={person.name}>
       <img src={person.image} alt={`${person.name}, ${person.role} at Brainboys AI`} loading="lazy" width="640" height="800" />
@@ -24,25 +24,25 @@ export function PeopleSection() {
 }
 
 const plans = [
-  { number: '01', name: 'Total flexibility', tag: 'ZERO LOCK-IN', description: 'Upgrade, downgrade, pause, or cancel whenever you want.', features: ['No long-term contracts', 'Scope agreed before work begins', 'Pause whenever the queue is clear', 'Scale support around real demand'], action: 'Plan your first task', href: '#book-calendar' },
-  { number: '02', name: 'Everything under one roof', tag: 'FULL-STACK ACCESS', description: 'GHL, AI automation, app development, ads, content, admin, tech, and project management.', features: ['Cross-functional specialists', 'One managed delivery process', 'Dedicated project oversight', 'Plug-and-play within 48 hours'], action: 'Build your on-demand team', href: '#book-calendar' },
-  { number: '03', name: 'Pay only for what gets done', tag: 'PURE OUTPUT', description: 'We ditch agency bench time. Your budget goes directly into completed work.', features: ['Fixed scope and upfront pricing', 'Live task and ticket tracking', 'Weekly delivery reports', 'No idle monthly fees'], action: 'Start shipping work', href: '#book-calendar' },
+  { number: '01', name: 'The specialist', tag: 'FOCUSED EXPERTISE', description: 'One dedicated expert plugged into the work you need to move now.', features: ['Matched to your tools and goals', 'Clear monthly scope and priorities', 'Direct collaboration with your team', 'Room to add more support'], action: 'Find your specialist', href: '#book-calendar' },
+  { number: '02', name: 'The connected pod', tag: 'MOST FLEXIBLE', description: 'A small, coordinated team covering the skills your next chapter needs.', features: ['A complementary mix of specialists', 'One delivery lead and shared plan', 'Creative, technical and operations support', 'Flexible capacity as priorities change'], action: 'Build your pod', href: '#book-calendar' },
+  { number: '03', name: 'The growth engine', tag: 'TEAM + AUTOMATION', description: 'People and intelligent systems working together to take the repeat work away.', features: ['Multi-skill team built around your stack', 'CRM and automation strategy', 'Connected workflows and reporting', 'Ongoing iteration as you scale'], action: 'Map your growth engine', href: '#book-calendar' },
 ]
 
 export function PricingSection() {
   return <section className="pricing-section section" id="pricing" aria-labelledby="pricing-title">
-    <div className="section-top reveal"><span className="eyebrow">05 / EXECUTION WITHOUT THE OVERHEAD</span><span className="muted">No retainers. No babysitting.</span></div>
-    <div className="pricing-heading reveal"><div><h2 id="pricing-title">Freelancers ghost. Agencies overcharge.<br/><span className="serif">Brain Boys executes.</span></h2><p>Specialists arrive when the work is real, stay accountable through delivery, and never leave you paying for an empty task queue.</p></div><span className="pricing-heading-mark">✳</span></div>
+    <div className="section-top reveal"><span className="eyebrow">YOUR TEAM, YOUR TERMS</span><span className="muted">A plan shaped by your priorities.</span></div>
+    <div className="pricing-heading reveal"><div><h2 id="pricing-title">Support that fits.<br/><span className="serif">Space to grow.</span></h2><p>Choose the shape of your team. We&apos;ll agree the scope, availability and monthly price with you before work begins.</p></div><span className="pricing-heading-mark">✳</span></div>
     <div className="pricing-grid">{plans.map((plan, index) => <article className={`pricing-card reveal${index === 1 ? ' pricing-card-featured' : ''}`} key={plan.name}>
-      <div className="pricing-card-top"><span>{plan.number} / {plan.tag}</span><span>↗︎</span></div>
+      <div className="pricing-card-top"><span>{plan.tag}</span><span>↗︎</span></div>
       <h3>{plan.name}</h3><p>{plan.description}</p>
-      <div className="pricing-price"><strong>On demand</strong><span>scoped before you spend</span></div>
+      <div className="pricing-price"><strong>Custom</strong><span>monthly proposal</span></div>
       <div className="pricing-divider" />
       <span className="pricing-includes">WHAT&apos;S INCLUDED</span>
       <ul>{plan.features.map(feature => <li key={feature}><span>✓</span>{feature}</li>)}</ul>
       <a href={plan.href}>{plan.action}<span>↗︎</span></a>
     </article>)}</div>
-    <div className="pricing-bottom reveal"><span>✧</span><p>Need a quick GHL pipeline fix, a custom workflow, or a complete launch team? Get the exact support you need without keeping full-time expertise on payroll.</p><a href="#book-calendar">Drop your brief ↗︎</a></div>
+    <div className="pricing-bottom reveal"><span>✧</span><p>Need one role, a whole pod, or something in between? We&apos;ll tailor the proposal to the work — and make the terms clear from day one.</p><a href="#book-calendar">Let&apos;s scope it together ↗︎</a></div>
   </section>
 }
 
@@ -66,7 +66,7 @@ export function VideoTestimonialsSection() {
     strip.scrollBy({ left: direction * ((card?.offsetWidth ?? 360) + 18), behavior: 'smooth' })
   }
   return <section className="video-stories section" id="video-stories" aria-labelledby="stories-title">
-    <div className="section-top reveal"><span className="eyebrow">06 / CLIENT VIDEO STORIES</span><span className="muted">Real voices. Real working relationships.</span></div>
+    <div className="section-top reveal"><span className="eyebrow">CLIENT VIDEO STORIES</span><span className="muted">Real voices. Real working relationships.</span></div>
     <div className="stories-heading reveal"><div><h2 id="stories-title">Don&apos;t take our word.<br/><span className="serif">Take theirs.</span></h2><p>Hear directly from clients who have worked with the Brainboys team.</p></div><div className="stories-controls"><button type="button" aria-label="Previous video testimonial" onClick={() => slide(-1)}>←</button><button type="button" aria-label="Next video testimonial" onClick={() => slide(1)}>→</button></div></div>
     <div className="stories-strip" ref={stripRef} tabIndex={0} aria-label="Client video testimonials. Scroll horizontally to see more.">{stories.map((story, index) => <article className={'story-card' + (playing === story.id ? ' is-playing' : '')} key={story.id}>
       <div className="story-media">{playing === story.id ? <><video src={story.video} title={`Client video testimonial ${index + 1}`} controls autoPlay playsInline preload="metadata"/><button type="button" className="story-close" aria-label={`Close client testimonial ${index + 1}`} onClick={() => setPlaying(null)}>×</button></> : <>
@@ -96,8 +96,8 @@ const directory = 'https://directory.gohighlevel.com/pakistan/karachi/certified-
 
 export function CertificationSection() {
   return <section className="certification-section" id="certifications" aria-labelledby="certification-title">
-    <div className="certification-inner section"><div className="section-top reveal"><span className="eyebrow">07 / CERTIFIED EXPERTISE</span><span className="muted">Credentials you can check.</span></div>
-      <div className="certification-feature reveal"><div className="certification-copy"><span className="certification-kicker"><i/> TOP-RATED GHL EXPERTISE</span><h2 id="certification-title">The work is personal.<br/><span className="serif">The credentials are real.</span></h2><p>From CRM architecture to automation and growth campaigns, our HighLevel capability is backed by certification and specialist badges earned through the platform.</p><a href={directory} target="_blank" rel="noopener noreferrer">View Ahsan&apos;s certified profile <span>↗︎</span></a></div><div className="certification-hero-badge"><div className="certification-orbit"/><img src="/cert-1.png" alt="HighLevel Certified Admin badge" width="260" height="260"/><span>HIGHLEVEL<br/>CERTIFIED ADMIN</span></div></div>
+    <div className="certification-inner section"><div className="section-top reveal"><span className="eyebrow">CERTIFIED EXPERTISE</span><span className="muted">Credentials you can check.</span></div>
+      <div className="certification-feature reveal"><div className="certification-copy"><span className="certification-kicker"><i/> TOP-RATED GHL EXPERTISE</span><h2 id="certification-title">Cold Coffee, High Blood Pressure, and Zero Output.<br/><span className="serif">The Real Cost of Traditional Retainers.</span></h2><p>You didn&apos;t start an agency to become a full-time babysitter for ghosting freelancers. Stop the chase.</p><a href={directory} target="_blank" rel="noopener noreferrer">View Ahsan&apos;s certified profile <span>↗︎</span></a></div><div className="certification-hero-badge"><div className="certification-orbit"/><img src="/cert-1.png" alt="HighLevel Certified Admin badge" width="260" height="260"/><span>HIGHLEVEL<br/>CERTIFIED ADMIN</span></div></div>
     </div>
     <div className="badge-marquee" aria-label="HighLevel certification and skill badges"><div className="badge-track">{[...badges, ...badges].map((badge, index) => <a className="badge-item" href={directory} target="_blank" rel="noopener noreferrer" key={`${badge.name}-${index}`} aria-label={`${badge.name} badge — view certified profile`} aria-hidden={index >= badges.length} tabIndex={index >= badges.length ? -1 : 0}><img src={badge.image} alt={index < badges.length ? badge.name : ''} loading="lazy" width="120" height="120"/><span>{badge.name}</span></a>)}</div></div>
   </section>

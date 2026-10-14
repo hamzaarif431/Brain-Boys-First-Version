@@ -47,19 +47,23 @@ export function CRMSpotlight({ motion }: { motion: boolean }) {
     if (!section) return
     const activate = () => document.documentElement.classList.add('crm-theme-active')
     const deactivate = () => document.documentElement.classList.remove('crm-theme-active')
+    const leadIn = document.getElementById('business-in-motion') ?? section.previousElementSibling ?? section
+    const brandingBoundary = section.previousElementSibling ?? section
     const trigger = ScrollTrigger.create({
-      trigger: section,
-      start: 'top top',
+      trigger: brandingBoundary,
+      start: brandingBoundary === section ? 'top top' : 'bottom top',
+      endTrigger: section,
       end: 'bottom top+=100',
       onEnter: activate,
       onEnterBack: activate,
       onLeave: deactivate,
       onLeaveBack: deactivate,
+      onRefresh: self => self.isActive ? activate() : deactivate(),
     })
     let ctx: gsap.Context | undefined
     if (motion && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       ctx = gsap.context(() => {
-        gsap.from('.crm-copy > *', { y: 34, opacity: 0, duration: .8, stagger: .09, ease: 'power3.out', scrollTrigger: { trigger: section, start: 'top 73%' } })
+        gsap.fromTo('.crm-shell', { xPercent: -110 }, { xPercent: 0, ease: 'none', scrollTrigger: { trigger: leadIn, start: leadIn === section ? 'top bottom' : 'bottom bottom', endTrigger: section, end: 'top top', scrub: .7, invalidateOnRefresh: true } })
       }, section)
     }
     return () => {
@@ -95,35 +99,67 @@ export function CRMSpotlight({ motion }: { motion: boolean }) {
         <a href="https://crm.brainboys.ai/" target="_blank" rel="noopener noreferrer">Explore Brainboys CRM <span>↗︎</span></a>
       </div>
     </div>
-    <div className="crm-theme-cue"><span>SCROLL-RESPONSIVE BRAND MODE</span><i/><span>POWERED BY HIGHLEVEL</span></div>
   </section>
 }
 
-export function ReviewsCTA({ href = '/contact?roles=AI%20Voice%20Bot', crmLeadIn = false }: { href?: string; crmLeadIn?: boolean } = {}) {
+export function ReviewsCTA({ audioSrc }: { audioSrc?: string } = {}) {
   const sectionRef = useRef<HTMLElement>(null)
+  const dialogRef = useRef<HTMLDialogElement>(null)
+  const callRef = useRef<HTMLButtonElement>(null)
+  const playerRef = useRef<HTMLDivElement>(null)
+  const [unlocked, setUnlocked] = useState(false)
+
+  const closeOptIn = () => {
+    dialogRef.current?.close()
+    callRef.current?.focus()
+  }
+
   useLayoutEffect(() => {
     const section = sectionRef.current
     if (!section || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const ctx = gsap.context(() => {
-      const mobile = window.matchMedia('(max-width: 650px)').matches
-      const timeline = gsap.timeline({ scrollTrigger: { trigger: section, start: mobile ? 'top 82px' : 'top 100px', end: mobile ? '+=100' : 'bottom bottom', scrub: 1, invalidateOnRefresh: true } })
-        .to('.reviews-cta-media', { width: '100vw', height: mobile ? '46.5vw' : '100vh', borderRadius: 0, duration: mobile ? .3 : 1, ease: 'none' })
-        .to('.reviews-cta-sticky', { height: mobile ? '46.5vw' : '100vh', duration: mobile ? .3 : 1, ease: 'none' }, '<')
-        .fromTo('.reviews-cta-content', { y: mobile ? 90 : 150, scale: .86, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: mobile ? .2 : .34, ease: 'power3.out' }, '>')
-      if (mobile) timeline.to('.reviews-cta-content', { opacity: 1, duration: .5, ease: 'none' }, '>')
+      const content = section.querySelector('.reviews-cta-content')!
+      gsap.set(content, { y: 65, autoAlpha: 0 })
+      const reveal = (visible: boolean) => gsap.to(content, { y: visible ? 0 : 65, autoAlpha: visible ? 1 : 0, duration: .55, ease: 'power3.out', overwrite: true })
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'bottom bottom',
+        onEnter: () => reveal(true),
+        onLeaveBack: () => reveal(false),
+        onRefresh: self => reveal(self.scroll() >= self.start),
+      })
     }, section)
     return () => ctx.revert()
   }, [])
-  return <section className={'reviews-cta' + (crmLeadIn ? ' crm-lead-in' : '')} id="reviews-proof" ref={sectionRef} aria-label="Client reviews and AI agent call">
+  return <section className="reviews-cta" id="reviews-proof" ref={sectionRef} aria-label="Client reviews and AI agent call">
     <div className="reviews-cta-sticky">
-      <div className="reviews-cta-media"><img className="reviews-cta-art" src="/brainboys-reviews-doodle.webp" alt="A doodle wall of five-star client reviews for the Brainboys team"/></div>
+      <div className="reviews-cta-media"><img className="reviews-cta-art" src="/brainboys-reviews-doodle.webp" width="1756" height="896" alt="A doodle wall of five-star client reviews for the Brainboys team"/></div>
       <div className="reviews-cta-content">
-        <a className="reviews-agent-call" href={href} aria-label="Talk with Our AI Agent">
+        {unlocked ? <div ref={playerRef} className="reviews-audio-player" role="region" tabIndex={-1} aria-label="AI agent recording">
+          <span className="eyebrow">BRAINBOYS / AI AGENT</span>
+          <h3>Your AI agent preview</h3>
+          {audioSrc ? <audio controls preload="none" src={audioSrc}>Your browser does not support audio playback.</audio> : <><button className="audio-awaiting" disabled aria-label="Recording not available yet"><span aria-hidden="true">▶</span> Recording coming soon</button><p>Your access is unlocked. The recording will appear here when it is ready.</p></>}
+        </div> : <button ref={callRef} type="button" className="reviews-agent-call" onClick={() => dialogRef.current?.showModal()} aria-label="Talk with Our AI Agent" aria-haspopup="dialog">
           <span className="reviews-agent-call-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.8 3.5 3.1 4.8 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.7 21 3 13.3 3 3.7c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.2Z"/></svg></span>
           <span>Talk with Our<br/><strong>AI Agent</strong></span>
-        </a>
+        </button>}
       </div>
     </div>
+    <dialog ref={dialogRef} className="agent-optin" aria-labelledby="agent-optin-title" onClick={event => { if (event.target === event.currentTarget) closeOptIn() }}>
+      <div className="agent-optin-inner">
+        <button className="agent-optin-close" type="button" onClick={closeOptIn} aria-label="Close opt-in">×</button>
+        <img src="/brainboys-mark.png" width="60" height="60" alt=""/>
+        <span className="eyebrow">MEET YOUR NEXT ADVANTAGE</span>
+        <h2 id="agent-optin-title">Hear what your<br/><span className="serif">AI agent can do.</span></h2>
+        <p>Enter your details to unlock the audio preview.</p>
+        <form onSubmit={event => { event.preventDefault(); setUnlocked(true); dialogRef.current?.close(); window.requestAnimationFrame(() => playerRef.current?.focus()) }}>
+          <label>Your name<input name="name" type="text" autoComplete="name" required maxLength={100}/></label>
+          <label>Email address<input name="email" type="email" autoComplete="email" required maxLength={254}/></label>
+          <label className="agent-consent"><input type="checkbox" required/>I agree to unlock the Brainboys AI agent preview.</label>
+          <button className="agent-optin-submit" type="submit">Unlock the preview <span aria-hidden="true">→</span></button>
+        </form>
+      </div>
+    </dialog>
   </section>
 }
 
