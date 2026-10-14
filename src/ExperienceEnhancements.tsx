@@ -92,7 +92,7 @@ export function CRMSpotlight({ motion }: { motion: boolean }) {
         <h2 id="crm-title">Bright minds.<br/>Better systems.<br/><em>Bigger possibilities.</em></h2>
         <p>Your business has big ideas. Brainboys CRM builds the connected system that brings them to life — capturing leads, nurturing relationships, closing deals and keeping every customer journey moving.</p>
         <div className="crm-capabilities"><span>AI automation</span><span>GoHighLevel CRM</span><span>Custom development</span></div>
-        <a href="https://brainboyscrm.vercel.app/" target="_blank" rel="noopener noreferrer">Explore Brainboys CRM <span>↗︎</span></a>
+        <a href="https://crm.brainboys.ai/" target="_blank" rel="noopener noreferrer">Explore Brainboys CRM <span>↗︎</span></a>
       </div>
     </div>
     <div className="crm-theme-cue"><span>SCROLL-RESPONSIVE BRAND MODE</span><i/><span>POWERED BY HIGHLEVEL</span></div>
@@ -142,11 +142,11 @@ export function SiteFooter({ isHome, motion, onToggleMotion, bookingHref }: { is
         <div className="footer-socials">
           <a href="https://www.linkedin.com/company/syncjourney" target="_blank" rel="noopener noreferrer" aria-label="Brainboys on LinkedIn"><SocialIcon name="linkedin"/></a>
           <a href="https://www.facebook.com/profile.php?id=61570383265779" target="_blank" rel="noopener noreferrer" aria-label="Brainboys on Facebook"><SocialIcon name="facebook"/></a>
-          <a href="https://brainboyscrm.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Visit Brainboys CRM"><SocialIcon name="globe"/></a>
+          <a href="https://crm.brainboys.ai/" target="_blank" rel="noopener noreferrer" aria-label="Visit Brainboys CRM"><SocialIcon name="globe"/></a>
         </div>
       </div>
       <div className="footer-column"><span>PAGES</span><a href="/">Home</a><a href="/services">Services</a><a href="/hire-a-team">Hire a team</a><a href="/automation">Automation</a><a href="/portfolio">Portfolio</a><a href="/contact">Contact</a></div>
-      <div className="footer-column"><span>SERVICES</span><a href="/services">Development</a><a href="/automation">AI & automation</a><a href="/services">Growth & creative</a><a href="https://brainboyscrm.vercel.app/" target="_blank" rel="noopener noreferrer">GoHighLevel CRM ↗︎</a></div>
+      <div className="footer-column"><span>SERVICES</span><a href="/services">Development</a><a href="/automation">AI & automation</a><a href="/services">Growth & creative</a><a href="https://crm.brainboys.ai/" target="_blank" rel="noopener noreferrer">GoHighLevel CRM ↗︎</a></div>
       <div className="footer-column"><span>LEGAL</span><a href="/privacy-policy">Privacy policy</a><a href="/terms-and-conditions">Terms & conditions</a></div>
       <div className="footer-column footer-contact"><span>LET&apos;S CONNECT</span><p>Worldwide team<br/>Working remotely</p><a href="mailto:hello@brainboys.ai">hello@brainboys.ai</a><a className="footer-call" href={bookingHref}>Book a strategy call <b className="ui-arrow" aria-hidden="true"/></a></div>
     </div>

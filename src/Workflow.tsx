@@ -49,6 +49,18 @@ export default function Workflow({ motion = true }: { motion?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const frameProgress = useRef(0)
 
+  const skipAnimation = () => {
+    const section = sectionRef.current
+    if (!section) return
+    const sectionTop = section.getBoundingClientRect().top + window.scrollY
+    const destination = Math.max(0, sectionTop + section.offsetHeight - window.innerHeight)
+    const root = document.documentElement
+    const previousBehavior = root.style.scrollBehavior
+    root.style.scrollBehavior = 'auto'
+    window.scrollTo({ top: destination, behavior: 'auto' })
+    window.requestAnimationFrame(() => { root.style.scrollBehavior = previousBehavior })
+  }
+
   useLayoutEffect(() => {
     const canvas = canvasRef.current
     const context = canvas?.getContext('2d')
@@ -181,7 +193,7 @@ export default function Workflow({ motion = true }: { motion?: boolean }) {
       <header className="tf2-heading">
         <span className="eyebrow"><i /> LIVE AUTOMATION / THE BRAINBOYS WAY</span>
         <h2 id="trigger-title">One trigger. <span className="serif">A whole business in motion.</span></h2>
-        <p>Scroll to watch every handoff happen automatically.</p>
+        <div className="tf2-heading-actions"><p>One scroll moves one handoff forward.</p>{motion && <button type="button" className="tf2-skip" onClick={skipAnimation}>Skip animation <span>→</span></button>}</div>
       </header>
       <div className="tf2-viewport">
         <div className="tf2-track">
