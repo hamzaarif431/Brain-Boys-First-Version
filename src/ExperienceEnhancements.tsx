@@ -1,6 +1,8 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { usePathname, useSearchParams } from 'next/navigation'
+import ExternalEmbed from './ExternalEmbed'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -103,11 +105,38 @@ export function CRMSpotlight({ motion }: { motion: boolean }) {
 }
 
 export function ReviewsCTA({ audioSrc }: { audioSrc?: string } = {}) {
+  return <Suspense fallback={<ReviewsCTAContent audioSrc={audioSrc} unlocked={false}/>}><ReviewsCTAAccess audioSrc={audioSrc}/></Suspense>
+}
+
+function ReviewsCTAAccess({ audioSrc }: { audioSrc?: string }) {
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+  return <ReviewsCTAContent audioSrc={audioSrc} unlocked={pathname === '/' && searchParams.get('access') === 'granted'}/>
+}
+
+function ReviewsCTAContent({ audioSrc, unlocked }: { audioSrc?: string; unlocked: boolean }) {
   const sectionRef = useRef<HTMLElement>(null)
   const dialogRef = useRef<HTMLDialogElement>(null)
   const callRef = useRef<HTMLButtonElement>(null)
-  const playerRef = useRef<HTMLDivElement>(null)
-  const [unlocked, setUnlocked] = useState(false)
+  const [formReady, setFormReady] = useState(false)
+  const [optInOpen, setOptInOpen] = useState(false)
+
+  useEffect(() => {
+    if (!optInOpen) return
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = previousOverflow }
+  }, [optInOpen])
+
+  useEffect(() => {
+    if (unlocked) dialogRef.current?.close()
+  }, [unlocked])
+
+  const openOptIn = () => {
+    setFormReady(true)
+    setOptInOpen(true)
+    dialogRef.current?.showModal()
+  }
 
   const closeOptIn = () => {
     dialogRef.current?.close()
@@ -135,29 +164,30 @@ export function ReviewsCTA({ audioSrc }: { audioSrc?: string } = {}) {
     <div className="reviews-cta-sticky">
       <div className="reviews-cta-media"><img className="reviews-cta-art" src="/brainboys-reviews-doodle.webp" width="1756" height="896" alt="A doodle wall of five-star client reviews for the Brainboys team"/></div>
       <div className="reviews-cta-content">
-        {unlocked ? <div ref={playerRef} className="reviews-audio-player" role="region" tabIndex={-1} aria-label="AI agent recording">
+        {unlocked ? <div className="reviews-audio-player" role="region" tabIndex={-1} aria-label="AI agent recording">
           <span className="eyebrow">BRAINBOYS / AI AGENT</span>
           <h3>Your AI agent preview</h3>
           {audioSrc ? <audio controls preload="none" src={audioSrc}>Your browser does not support audio playback.</audio> : <><button className="audio-awaiting" disabled aria-label="Recording not available yet"><span aria-hidden="true">▶</span> Recording coming soon</button><p>Your access is unlocked. The recording will appear here when it is ready.</p></>}
-        </div> : <button ref={callRef} type="button" className="reviews-agent-call" onClick={() => dialogRef.current?.showModal()} aria-label="Talk with Our AI Agent" aria-haspopup="dialog">
+        </div> : <button ref={callRef} type="button" className="reviews-agent-call" onClick={openOptIn} aria-label="Talk with Our AI Agent" aria-haspopup="dialog">
           <span className="reviews-agent-call-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.8 3.5 3.1 4.8 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.7 21 3 13.3 3 3.7c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.2Z"/></svg></span>
           <span>Talk with Our<br/><strong>AI Agent</strong></span>
         </button>}
       </div>
     </div>
-    <dialog ref={dialogRef} className="agent-optin" aria-labelledby="agent-optin-title" onClick={event => { if (event.target === event.currentTarget) closeOptIn() }}>
+    <dialog ref={dialogRef} className="agent-optin" aria-labelledby="agent-optin-title" onClose={() => setOptInOpen(false)} onClick={event => { if (event.target === event.currentTarget) closeOptIn() }}>
       <div className="agent-optin-inner">
         <button className="agent-optin-close" type="button" onClick={closeOptIn} aria-label="Close opt-in">×</button>
         <img src="/brainboys-mark.png" width="60" height="60" alt=""/>
         <span className="eyebrow">MEET YOUR NEXT ADVANTAGE</span>
         <h2 id="agent-optin-title">Hear what your<br/><span className="serif">AI agent can do.</span></h2>
         <p>Enter your details to unlock the audio preview.</p>
-        <form onSubmit={event => { event.preventDefault(); setUnlocked(true); dialogRef.current?.close(); window.requestAnimationFrame(() => playerRef.current?.focus()) }}>
-          <label>Your name<input name="name" type="text" autoComplete="name" required maxLength={100}/></label>
-          <label>Email address<input name="email" type="email" autoComplete="email" required maxLength={254}/></label>
-          <label className="agent-consent"><input type="checkbox" required/>I agree to unlock the Brainboys AI agent preview.</label>
-          <button className="agent-optin-submit" type="submit">Unlock the preview <span aria-hidden="true">→</span></button>
-        </form>
+        <div className="agent-optin-embed">{formReady && <ExternalEmbed
+          src="https://api.brainboys.ai/widget/form/FtJTWEqChCRZYJ9P7CSS"
+          id="inline-FtJTWEqChCRZYJ9P7CSS"
+          formId="FtJTWEqChCRZYJ9P7CSS"
+          height={400}
+          title="AI Agent Optin Form"
+        />}</div>
       </div>
     </dialog>
   </section>

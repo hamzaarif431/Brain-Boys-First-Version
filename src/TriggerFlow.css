@@ -33,10 +33,34 @@
 @media(max-width:800px){.trigger-flow{height:auto}.tf2-sticky{height:auto;min-height:0;position:relative;overflow:hidden;padding-bottom:45px}.tf2-heading{padding-top:105px;text-align:left;width:calc(100% - 40px)}.tf2-heading h2{font-size:clamp(32px,7vw,46px);letter-spacing:-.04em}.tf2-heading p{font-size:12px;line-height:1.5}.tf2-viewport{position:relative;inset:auto;width:calc(100% - 40px);margin:45px auto 0;overflow:visible;mask-image:none}.tf2-track{position:relative;top:auto;height:auto;transform:none!important}.tf2-step,.tf2-step-0,.tf2-step-1,.tf2-step-2,.tf2-step-3,.tf2-step-4{position:relative;top:auto;display:flex;flex-direction:column;min-height:290px;height:auto;padding-bottom:95px;transform:none;--node-x:0}.tf2-node{order:0;position:relative;top:auto;left:auto;width:100%;transform:none;opacity:.38;filter:blur(2px);min-height:70px}.tf2-copy,.tf2-step-0 .tf2-copy,.tf2-step-1 .tf2-copy,.tf2-step-2 .tf2-copy,.tf2-step-3 .tf2-copy,.tf2-step-4 .tf2-copy{order:1;position:relative;top:auto;left:auto;right:auto;transform:none;width:calc(100% - 23px);margin:15px 0 0 23px;opacity:.55;pointer-events:auto}.tf2-copy::after{display:none}.tf2-connector{position:absolute;top:76px;left:27px;width:2px;height:calc(100% - 88px);opacity:1}.tf2-connector svg{display:none}.tf2-connector::before{content:'';display:block;width:2px;height:100%;background:#b898d9;transform:scaleY(0);transform-origin:top;transition:transform .7s}.tf2-connector.is-drawn::before{transform:scaleY(1)}.tf2-step.is-active .tf2-node,.tf2-step.is-complete .tf2-node{transform:none;opacity:1;filter:none;animation:none}.tf2-step.is-active .tf2-copy{opacity:1;animation:none}.tf2-step.is-complete .tf2-copy{opacity:.75}.tf2-finale{position:relative;inset:auto;visibility:visible;opacity:1;transform:none!important;min-height:480px;margin-top:-20px;padding:15px 0 45px}.tf2-gif{width:min(500px,100vw);max-width:none}.tf2-finale>a{margin-top:-5px}.tf2-progress{display:none}}
 @media(max-width:800px){.tf2-heading-actions{justify-content:space-between;gap:12px}.tf2-skip{flex:none;font-size:8px}}
 @media(max-width:480px){.tf2-heading{padding-top:95px}.tf2-heading-actions{align-items:flex-start;flex-direction:column}.tf2-node{grid-template-columns:38px minmax(0,1fr) auto;gap:8px;padding:10px;min-height:65px}.tf2-node-icon{width:38px;height:38px;font-size:20px}.tf2-node-body strong{font-size:11px}.tf2-node-status{min-width:52px;font-size:7px;padding:6px}.tf2-copy{padding:14px 15px}.tf2-copy h3{font-size:17px}.tf2-copy p{font-size:11px}.tf2-step{min-height:260px;padding-bottom:82px}.tf2-finale{min-height:410px}}
+
 @media(max-height:760px) and (min-width:801px){.tf2-sticky{min-height:600px}.tf2-heading{padding-top:92px}.tf2-heading h2{font-size:40px}.tf2-viewport{top:145px}.tf2-gif{width:min(530px,70vh)}}
 .trigger-flow-static{height:auto}.trigger-flow-static .tf2-sticky{position:relative;height:auto;min-height:0;overflow:visible;padding-bottom:40px}.trigger-flow-static .tf2-viewport{position:relative;inset:auto;height:auto;overflow:visible;mask-image:none;margin-top:50px}.trigger-flow-static .tf2-track{position:relative;top:auto;height:auto;transform:none!important}.trigger-flow-static .tf2-step{position:relative;top:auto;display:flex;flex-direction:column;height:auto;min-height:180px;transform:none;--node-x:0;padding:0 0 55px}.trigger-flow-static .tf2-node{position:relative;top:auto;left:auto;opacity:1;filter:none;transform:none;width:min(500px,100%)}.trigger-flow-static .tf2-copy{position:relative;top:auto;left:auto;right:auto;opacity:1;transform:none;width:min(500px,100%);margin:12px 0 0}.trigger-flow-static .tf2-connector{display:none}.trigger-flow-static .tf2-finale{position:relative;visibility:visible;opacity:1;transform:none!important;min-height:440px}.trigger-flow-static .tf2-progress{display:none}
 @media(prefers-reduced-motion:reduce){.trigger-flow{height:auto}.tf2-sticky{position:relative;height:auto;min-height:0;overflow:visible;padding-bottom:40px}.tf2-viewport{position:relative;inset:auto;height:auto;overflow:visible;mask-image:none;margin-top:50px}.tf2-track{position:relative;top:auto;height:auto;transform:none!important}.tf2-step{position:relative;top:auto;display:flex;flex-direction:column;height:auto;min-height:180px;transform:none;--node-x:0;padding:0 0 55px}.tf2-node{position:relative;top:auto;left:auto;opacity:1;filter:none;transform:none;width:min(500px,100%)}.tf2-copy{position:relative;top:auto;left:auto;right:auto;opacity:1;transform:none;width:min(500px,100%);margin:12px 0 0}.tf2-connector{display:none}.tf2-finale{position:relative;visibility:visible;opacity:1;transform:none!important;min-height:440px}.tf2-progress{display:none}}
 .tf2-step.is-active .tf2-status-complete{display:none}
+@media(min-width:801px){
+  .tf2-step{--node-half-width:min(160px,calc(var(--node-x) - 4px))}
+  .tf2-node{width:calc(var(--node-half-width) * 2)}
+  .tf2-node-body strong{overflow:visible;text-overflow:clip;white-space:normal;line-height:1.35;overflow-wrap:break-word}
+  .tf2-node-body span{line-height:1.4}
+  .tf2-step-0 .tf2-copy,.tf2-step-1 .tf2-copy,.tf2-step-4 .tf2-copy{left:calc(var(--node-x) + var(--node-half-width) + 18px)}
+  .tf2-step-2 .tf2-copy,.tf2-step-3 .tf2-copy{right:calc(100% - var(--node-x) + var(--node-half-width) + 18px)}
+}
+.tf2-finale-scroll{position:absolute;inset:0;z-index:5;pointer-events:none}
+.tf2-finale-scroll .tf2-finale{pointer-events:auto}
+.tf2-gif{background:#f7f3ff url('/brain-boys-logo-poster.webp') center/contain no-repeat;contain:layout paint;transform:translateZ(0);backface-visibility:hidden}
+@media(max-width:800px){
+  .tf2-sticky{overflow:visible;padding-bottom:0}
+  .tf2-finale-scroll{position:relative;inset:auto;height:245svh;pointer-events:auto}
+  .tf2-finale-scroll .tf2-finale{position:sticky;inset:auto;top:0;height:100svh;min-height:0;margin:0;padding:30px 16px;transform:none!important}
+  .tf2-gif{width:min(92vw,62svh,540px)}
+}
+.trigger-flow-static .tf2-finale-scroll{position:relative;inset:auto;height:auto;pointer-events:auto}
+.trigger-flow-static .tf2-finale-scroll .tf2-finale{position:relative;top:auto;inset:auto;height:auto;min-height:440px}
+@media(prefers-reduced-motion:reduce){
+  .tf2-finale-scroll{position:relative;inset:auto;height:auto;pointer-events:auto}
+  .tf2-finale-scroll .tf2-finale{position:relative;top:auto;inset:auto;height:auto;min-height:440px}
+}
 .tf2-finale-scroll{position:absolute;inset:0;z-index:5;pointer-events:none}
 .tf2-finale-scroll .tf2-finale{pointer-events:auto}
 .tf2-gif{background:#f7f3ff url('/brain-boys-logo-poster.webp') center/contain no-repeat;contain:layout paint;transform:translateZ(0);backface-visibility:hidden}
