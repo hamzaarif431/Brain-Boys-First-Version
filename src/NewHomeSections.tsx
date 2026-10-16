@@ -71,6 +71,9 @@ const plans = [
 
 export function PricingSection() {
   const projectDialogRef = useRef<HTMLDialogElement>(null)
+  const podDialogRef = useRef<HTMLDialogElement>(null)
+  const [podFormReady, setPodFormReady] = useState(false)
+  const [podOpen, setPodOpen] = useState(false)
   const [projectFormReady, setProjectFormReady] = useState(false)
   const [projectOpen, setProjectOpen] = useState(false)
   const [activeForm, setActiveForm] = useState<'project' | 'virtual-assistant'>('project')
@@ -80,11 +83,17 @@ export function PricingSection() {
   const formHeight = isVirtualAssistant ? 901 : 944
 
   useEffect(() => {
-    if (!projectOpen) return
+    if (!projectOpen && !podOpen) return
     const previousOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
     return () => { document.body.style.overflow = previousOverflow }
-  }, [projectOpen])
+  }, [projectOpen, podOpen])
+
+  const openPodForm = () => {
+    setPodFormReady(true)
+    setPodOpen(true)
+    podDialogRef.current?.showModal()
+  }
 
   const openProjectForm = (form: 'project' | 'virtual-assistant') => {
     setActiveForm(form)
@@ -103,9 +112,13 @@ export function PricingSection() {
       <div className="pricing-divider" />
       <span className="pricing-includes">WHAT&apos;S INCLUDED</span>
       <ul>{plan.features.map(feature => <li key={feature}><span>✓</span>{feature}</li>)}</ul>
-      {index === 0 || index === 2 ? <button type="button" className="pricing-project-button" onClick={() => openProjectForm(index === 2 ? 'virtual-assistant' : 'project')} aria-haspopup="dialog">{plan.action}<span aria-hidden="true">↗︎</span></button> : <a href={plan.href}>{plan.action}<span>↗︎</span></a>}
+      <button type="button" className="pricing-project-button" onClick={() => index === 1 ? openPodForm() : openProjectForm(index === 2 ? 'virtual-assistant' : 'project')} aria-haspopup="dialog">{plan.action}<span aria-hidden="true">↗︎</span></button>
     </article>)}</div>
     <div className="pricing-bottom reveal"><span>✧</span><p>Need one role, a whole pod, or something in between? We&apos;ll tailor the proposal to the work — and make the terms clear from day one.</p><a href="#book-calendar">Let&apos;s scope it together ↗︎</a></div>
+    <dialog ref={podDialogRef} className="connected-pod-popup" aria-label="The connected pod — Hourly Rate" onClose={() => setPodOpen(false)} onClick={event => { if (event.target === event.currentTarget) podDialogRef.current?.close() }}>
+      <button type="button" className="connected-pod-popup-close" onClick={() => podDialogRef.current?.close()} aria-label="Close hourly rate form">×</button>
+      {podFormReady && <ExternalEmbed src="https://api.brainboys.ai/widget/form/u3AHnYLXevensYOUwojW" id="inline-u3AHnYLXevensYOUwojW" formId="u3AHnYLXevensYOUwojW" title="Hourly Rate" autoHeight />}
+    </dialog>
     <dialog ref={projectDialogRef} className="project-based-popup" id="project-based" aria-labelledby="project-based-title" onClose={() => setProjectOpen(false)} onClick={event => { if (event.target === event.currentTarget) projectDialogRef.current?.close() }}>
       <div className="project-based-popup-surface">
       <header className="project-based-popup-header"><div><span className="eyebrow">{formName.toUpperCase()}</span><h2 id="project-based-title">{isVirtualAssistant ? <>Make room for more.<br/><span className="serif">Meet your virtual assistant.</span></> : <>Let’s bring your<br/><span className="serif">project to life.</span></>}</h2><p>{isVirtualAssistant ? 'Tell us about the tasks you want to hand over. We’ll match you with a virtual assistant who fits your tools, schedule and business needs.' : 'Tell us what you need. We’ll help define the scope, timeline and right expertise for your project.'}</p></div><button type="button" className="founder-calendar-close" onClick={() => projectDialogRef.current?.close()} aria-label="Close package form">×</button></header>

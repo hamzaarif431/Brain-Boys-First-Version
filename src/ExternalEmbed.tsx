@@ -24,9 +24,10 @@ type ExternalEmbedProps = {
   scrolling?: 'yes' | 'no' | 'auto'
   loading?: 'eager' | 'lazy'
   embedScript?: boolean
+  autoHeight?: boolean
 }
 
-export default function ExternalEmbed({ src, title, id, height, formId, allow, scrolling, loading, embedScript = true }: ExternalEmbedProps) {
+export default function ExternalEmbed({ src, title, id, height, formId, allow, scrolling, loading, embedScript = true, autoHeight = false }: ExternalEmbedProps) {
   const hostRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -72,5 +73,5 @@ export default function ExternalEmbed({ src, title, id, height, formId, allow, s
     }
   }, [src, title, id, height, formId, allow, scrolling, loading, embedScript])
 
-  return <div ref={hostRef} style={{ width: '100%', height: '100%', minHeight: height }} />
+  return <div ref={hostRef} style={{ width: '100%', height: autoHeight ? 'auto' : '100%', minHeight: height }} />
 }
