@@ -6,7 +6,7 @@ import TestimonialCard from './TestimonialCard'
 const people = [
   { name: 'Muhammad Ahmed Ali', role: 'Chief Technology Officer', image: '/CTO.png' },
   { name: 'Muhammad Asim', role: 'Business Development Manager', image: '/BDM.png' },
-  { name: 'Ahsan Bhaghdadi', role: 'Chief Operating Officer ', image: '/COO.png' },
+  { name: 'Ahsan Baghdadi', role: 'Chief Operating Officer ', image: '/COO.png' },
 
   { name: 'Mohammad Hamzah', role: 'Senior Account Manager', image: '/AM.png' },
   { name: 'Fatima Ali', role: 'Senior Project Manager', image: '/SPM.png' },
