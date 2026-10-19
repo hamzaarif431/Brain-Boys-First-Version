@@ -34,9 +34,9 @@ export default function TestimonialCard({ story, index, playing, onPlay, onClose
       <video suppressHydrationWarning ref={videoRef} className="story-player" src={story.video} poster={story.poster} title={`Client video testimonial ${index + 1}`} controls playsInline preload="none" aria-hidden={!playing} tabIndex={playing ? 0 : -1}/>
       <div className="story-preview-content" aria-hidden={playing}>
         <div className="story-shade"/>
-        <span className="story-number">0{index + 1}</span><span className="story-corner" aria-hidden="true">↗︎</span>
+        <span className="story-number">0{index + 1}</span>
         <button ref={playRef} type="button" className="story-play" aria-label={`Play client testimonial ${index + 1}`} tabIndex={playing ? -1 : 0} onClick={onPlay}><span>▶</span><b>PLAY STORY</b></button>
-        <div className="story-card-copy"><span className="story-card-role">CLIENT VIDEO STORY</span><h3>{story.title}</h3><p>Hear the story in their own words.</p></div>
+        <div className="story-card-copy"><h3>{story.title}</h3></div>
       </div>
       <button type="button" className="story-close" aria-label={`Close client testimonial ${index + 1}`} aria-hidden={!playing} tabIndex={playing ? 0 : -1} onClick={close}>×</button>
     </div>

@@ -108,8 +108,8 @@
 .people-slider-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 20px; }
 .people-slider-toolbar > span { color: #8b729f; font-size: 9px; letter-spacing: .12em; }
 .people-slider-toolbar .stories-controls { align-self: center; margin-top: 0; }
-.people-slider-toolbar .stories-controls button { display: grid; place-items: center; flex: none; padding: 0; line-height: 1; appearance: none; }
-.people-slider-toolbar .stories-controls svg { display: block; width: 20px; height: 20px; }
+.stories-controls button { display: grid; place-items: center; flex: none; padding: 0; line-height: 1; appearance: none; }
+.stories-controls svg { display: block; width: 20px; height: 20px; }
 .people-grid.people-slider-track {
   display: flex;
   gap: 18px;

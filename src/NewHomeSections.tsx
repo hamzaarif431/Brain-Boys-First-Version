@@ -11,7 +11,7 @@ const people = [
   { name: 'Mohammad Hamzah', role: 'Senior Account Manager', image: '/AM.png' },
   { name: 'Umamah Nadeem', role: 'Social Media Manager', image: '/SMM.png' },
   { name: 'Hamza Arif', role: 'AI Specialist', image: '/AI.png' },
-  { name: 'Sakin Jaafer', role: 'Outreach Expert', image: '/team-zara.jpg' },
+  { name: 'Sakina Ramza Jaafer', role: 'Outreach Expert', image: '/OE.png' },
 ]
 
 export function PeopleSection() {
@@ -194,14 +194,14 @@ export function PricingSection() {
 }
 
 const stories = [
-  { id: 'brainboys-1', video: '/testimonials/branded/BrainBoys-Testimonial-1.mp4', poster: '/testimonials/posters/BrainBoys-Testimonial-1.jpg', title: 'Client story 01' },
-  { id: 'brainboys-2', video: '/testimonials/branded/BrainBoys-Testimonial-2.mp4', poster: '/testimonials/posters/BrainBoys-Testimonial-2.jpg', title: 'Client story 02' },
-  { id: 'brainboys-2-37-04', video: '/testimonials/branded/BrainBoys-Testimonial-2-37-04-AM.mp4', poster: '/testimonials/posters/BrainBoys-Testimonial-2-37-04-AM.jpg', title: 'Client story 03' },
-  { id: 'brainboys-2-37-31', video: '/testimonials/branded/BrainBoys-Testimonial-2-37-31-AM.mp4', poster: '/testimonials/posters/BrainBoys-Testimonial-2-37-31-AM.jpg', title: 'Client story 04' },
-  { id: 'brainboys-2-39-02', video: '/testimonials/branded/BrainBoys-Testimonial-2-39-02-AM.mp4', poster: '/testimonials/posters/BrainBoys-Testimonial-2-39-02-AM.jpg', title: 'Client story 05' },
-  { id: 'brainboys-3', video: '/testimonials/branded/BrainBoys-Testimonial-3.mp4', poster: '/testimonials/posters/BrainBoys-Testimonial-3.jpg', title: 'Client story 06' },
-  { id: 'brainboys-4', video: '/testimonials/branded/BrainBoys-Testimonial-4.mp4', poster: '/testimonials/posters/BrainBoys-Testimonial-4.jpg', title: 'Client story 07' },
-  { id: 'brainboys-5-01-20', video: '/testimonials/branded/BrainBoys-Testimonial-5-01-20-PM.mp4', poster: '/testimonials/posters/BrainBoys-Testimonial-5-01-20-PM.jpg', title: 'Client story 08' },
+  { id: 'brainboys-1', video: '/testimonials/branded/BrainBoys-Testimonial-1.mp4', poster: '/testimonials/posters/BrainBoys-Testimonial-1.jpg', title: 'Client story' },
+  { id: 'brainboys-2', video: '/testimonials/branded/BrainBoys-Testimonial-2.mp4', poster: '/testimonials/posters/BrainBoys-Testimonial-2.jpg', title: 'Client story' },
+  { id: 'brainboys-2-37-04', video: '/testimonials/branded/BrainBoys-Testimonial-2-37-04-AM.mp4', poster: '/testimonials/posters/BrainBoys-Testimonial-2-37-04-AM.jpg', title: 'Client story' },
+  { id: 'brainboys-2-37-31', video: '/testimonials/branded/BrainBoys-Testimonial-2-37-31-AM.mp4', poster: '/testimonials/posters/BrainBoys-Testimonial-2-37-31-AM.jpg', title: 'Client story ' },
+  { id: 'brainboys-2-39-02', video: '/testimonials/branded/BrainBoys-Testimonial-2-39-02-AM.mp4', poster: '/testimonials/posters/BrainBoys-Testimonial-2-39-02-AM.jpg', title: 'Client story ' },
+  { id: 'brainboys-3', video: '/testimonials/branded/BrainBoys-Testimonial-3.mp4', poster: '/testimonials/posters/BrainBoys-Testimonial-3.jpg', title: 'Client story ' },
+  { id: 'brainboys-4', video: '/testimonials/branded/BrainBoys-Testimonial-4.mp4', poster: '/testimonials/posters/BrainBoys-Testimonial-4.jpg', title: 'Client story ' },
+  { id: 'brainboys-5-01-20', video: '/testimonials/branded/BrainBoys-Testimonial-5-01-20-PM.mp4', poster: '/testimonials/posters/BrainBoys-Testimonial-5-01-20-PM.jpg', title: 'Client story' },
 ]
 
 export function VideoTestimonialsSection() {
@@ -215,7 +215,7 @@ export function VideoTestimonialsSection() {
   }
   return <section className="video-stories section" id="video-stories" aria-labelledby="stories-title">
     <div className="section-top reveal"><span className="eyebrow">CLIENT VIDEO STORIES</span><span className="muted">Real voices. Real working relationships.</span></div>
-    <div className="stories-heading reveal"><div><h2 id="stories-title">Don&apos;t take our word.<br/><span className="serif">Take theirs.</span></h2><p>Hear directly from clients who have worked with the Brainboys team.</p></div><div className="stories-controls"><button type="button" aria-label="Previous video testimonial" onClick={() => slide(-1)}>←</button><button type="button" aria-label="Next video testimonial" onClick={() => slide(1)}>→</button></div></div>
+    <div className="stories-heading reveal"><div><h2 id="stories-title">Don&apos;t take our word.<br/><span className="serif">Take theirs.</span></h2><p>Hear directly from clients who have worked with the Brainboys team.</p></div><div className="stories-controls"><button type="button" aria-label="Previous video testimonial" onClick={() => slide(-1)}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg></button><button type="button" aria-label="Next video testimonial" onClick={() => slide(1)}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div></div>
     <div className="stories-strip" ref={stripRef} tabIndex={0} aria-label="Client video testimonials. Scroll horizontally to see more.">{stories.map((story, index) => <TestimonialCard key={story.id} story={story} index={index} playing={playing === story.id} onPlay={() => setPlaying(story.id)} onClose={() => setPlaying(null)}/>)}</div>
     <div className="stories-end"><span>DRAG OR SCROLL TO EXPLORE MORE STORIES</span><span aria-hidden="true">↔</span></div>
   </section>
