@@ -1,18 +1,24 @@
-import { useEffect, useRef, useState } from 'react'
+// @refresh reset
+import { useCallback, useEffect, useRef, useState } from 'react'
 import ExternalEmbed from './ExternalEmbed'
 import TestimonialCard from './TestimonialCard'
 
 const people = [
-  { name: 'Ayaan Malik', role: 'Head of Automation', image: '/team-ayaan.jpg' },
-  { name: 'Sofia Rehman', role: 'CRM & GoHighLevel Lead', image: '/team-sofia.jpg' },
-  { name: 'Daniel Okoye', role: 'Full-Stack Engineer', image: '/team-daniel.jpg' },
-  { name: 'Hira Shaikh', role: 'Design & Motion Lead', image: '/team-hira.jpg' },
-  { name: 'Marco Bellini', role: 'Performance Marketing', image: '/team-marco.jpg' },
-  { name: 'Zara Iqbal', role: 'Delivery Manager', image: '/team-zara.jpg' },
+  { name: 'Muhammad Ahmed Ali', role: 'Chief Technology Officer', image: '/CTO.png' },
+  { name: 'Muhammad Asim', role: 'Business Development Manager', image: '/BDM.png' },
+  { name: 'Ahsan Bhaghdadi', role: 'Chief Operating Officer ', image: '/COO.png' },
+
+  { name: 'Mohammad Hamzah', role: 'Senior Account Manager', image: '/AM.png' },
+  { name: 'Fatima Ali', role: 'Senior Project Manager', image: '/SPM.png' },
+  { name: 'Umamah Nadeem', role: 'Social Media Manager', image: '/SMM.png' },
+  { name: 'Hamza Arif', role: 'AI Specialist', image: '/AI.png' },
+  { name: 'Sakin Jaafer', role: 'Outreach Expert', image: '/team-zara.jpg' },
 ]
 
 export function PeopleSection() {
   const calendarRef = useRef<HTMLDialogElement>(null)
+  const teamStripRef = useRef<HTMLDivElement>(null)
+  const teamSliderRef = useRef<HTMLDivElement>(null)
   const [calendarReady, setCalendarReady] = useState(false)
   const [calendarOpen, setCalendarOpen] = useState(false)
 
@@ -28,6 +34,57 @@ export function PeopleSection() {
     setCalendarOpen(true)
     calendarRef.current?.showModal()
   }
+
+  const slideTeam = useCallback((direction: number) => {
+    const strip = teamStripRef.current
+    if (!strip) return
+    const card = strip.querySelector<HTMLElement>('.people-card')
+    const gap = Number.parseFloat(getComputedStyle(strip).columnGap) || 18
+    const maxScroll = strip.scrollWidth - strip.clientWidth
+    const atEnd = strip.scrollLeft >= maxScroll - 2
+    const atStart = strip.scrollLeft <= 2
+    const next = direction > 0 && atEnd ? 0 : direction < 0 && atStart ? maxScroll : strip.scrollLeft + direction * ((card?.offsetWidth ?? 360) + gap)
+    strip.scrollTo({ left: next, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
+  }, [])
+
+  useEffect(() => {
+    const slider = teamSliderRef.current
+    if (!slider || calendarOpen) return
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    let visible = false
+    let hovered = window.matchMedia('(hover: hover)').matches && slider.matches(':hover')
+    let dragging = false
+    let lastInteraction = 0
+    const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting }, { threshold: .15 })
+    observer.observe(slider)
+    const enter = (event: PointerEvent) => { if (event.pointerType === 'mouse') hovered = true }
+    const leave = () => { hovered = false }
+    const down = () => { dragging = true; lastInteraction = Date.now() }
+    const up = () => { if (dragging) { dragging = false; lastInteraction = Date.now() } }
+    const interact = () => { lastInteraction = Date.now() }
+    slider.addEventListener('pointerenter', enter)
+    slider.addEventListener('pointerleave', leave)
+    slider.addEventListener('pointerdown', down)
+    slider.addEventListener('wheel', interact, { passive: true })
+    slider.addEventListener('keydown', interact)
+    window.addEventListener('pointerup', up)
+    window.addEventListener('pointercancel', up)
+    const timer = window.setInterval(() => {
+      if (!visible || document.hidden || hovered || dragging || reducedMotion.matches || slider.closest('.motion-off') || slider.querySelector(':focus-visible') || Date.now() - lastInteraction < 1500) return
+      slideTeam(1)
+    }, 1500)
+    return () => {
+      window.clearInterval(timer)
+      observer.disconnect()
+      slider.removeEventListener('pointerenter', enter)
+      slider.removeEventListener('pointerleave', leave)
+      slider.removeEventListener('pointerdown', down)
+      slider.removeEventListener('wheel', interact)
+      slider.removeEventListener('keydown', interact)
+      window.removeEventListener('pointerup', up)
+      window.removeEventListener('pointercancel', up)
+    }
+  }, [calendarOpen, slideTeam])
 
   return <section className="people-section section" id="experts" aria-labelledby="people-title">
     <div className="section-top reveal"><span className="eyebrow">THE PEOPLE BEHIND THE POSSIBILITY</span><span className="muted">People first. Powerful work follows.</span></div>
@@ -48,13 +105,16 @@ export function PeopleSection() {
       </div>
     </article>
     <div className="internal-team-heading reveal"><div><span className="eyebrow">OUR INTERNAL TEAM</span><h3>Six minds.<br/><span className="serif">One shared standard.</span></h3></div><p>The people who turn the plan into progress. Your core team, connected from brief to delivery.</p></div>
-    <div className="people-grid">{people.map((person, index) => <article className="people-card reveal" key={person.name}>
+    <div className="people-slider reveal" ref={teamSliderRef}>
+    <div className="people-slider-toolbar"><span>SCROLL TO MEET THE TEAM</span><div className="stories-controls"><button type="button" aria-label="Previous team member" aria-controls="internal-team-slider" onClick={() => slideTeam(-1)}>←</button><button type="button" aria-label="Next team member" aria-controls="internal-team-slider" onClick={() => slideTeam(1)}>→</button></div></div>
+    <div className="people-grid people-slider-track" id="internal-team-slider" ref={teamStripRef} tabIndex={0} role="region" aria-roledescription="carousel" aria-label="Our internal team. Swipe or scroll horizontally to see all team members.">{people.map((person, index) => <article className="people-card" key={person.name}>
       <img src={person.image} alt={`${person.name}, ${person.role} at Brainboys AI`} loading="lazy" width="640" height="800" />
       <div className="people-card-shade" />
       <span className="people-card-number">0{index + 1}</span>
       <div className="people-card-copy"><span className="people-card-role">{person.role}</span><h3>{person.name}</h3><p>Part of the core delivery team — matched to your stack from day one.</p></div>
-      <span className="people-card-arrow" aria-hidden="true">↗︎</span>
+      
     </article>)}</div>
+    </div>
     <dialog className="founder-calendar" ref={calendarRef} aria-labelledby="founder-calendar-title" onClose={() => setCalendarOpen(false)} onClick={event => { if (event.target === event.currentTarget) calendarRef.current?.close() }}>
       <div className="founder-calendar-header booking-topbar"><div><img src="/brainboys-mark.png" alt="Brainboys AI" width="52" height="52"/><p><strong id="founder-calendar-title">Brainboys consultation</strong><small>30 minutes · With Muhammad Faraz</small></p></div><div className="founder-calendar-actions"><span className="founder-calendar-status"><i aria-hidden="true"/> Calendar live</span><button type="button" className="founder-calendar-close" onClick={() => calendarRef.current?.close()} aria-label="Close booking calendar">×</button></div></div>
       <div className="founder-calendar-body">{calendarReady && <ExternalEmbed src="https://api.brainboys.ai/widget/booking/GKgTE4I3nRlJlnZb0ID1" allow="payment" scrolling="no" id="GKgTE4I3nRlJlnZb0ID1_1792086109034" title="Book a call with Muhammad Faraz"/>}</div>
