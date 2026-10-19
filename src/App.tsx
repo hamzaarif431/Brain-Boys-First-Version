@@ -38,7 +38,6 @@ export default function SiteShell({ children, isHome = false, bookingHref }: Sit
         gsap.from('.sculpture', { opacity: 0, scale: .6, rotation: -25, duration: 1.8, ease: 'power3.out' })
         gsap.to('.mark-float', { y: -19, rotation: 7, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' })
         gsap.to('.orbit', { rotation: 360, duration: 55, repeat: -1, ease: 'none' })
-        gsap.to('.ticker-track', { xPercent: -50, duration: 35, repeat: -1, ease: 'none' })
       }
       gsap.utils.toArray<HTMLElement>('.reveal').forEach(element => {
         gsap.from(element, { y: 45, opacity: 0, duration: .85, ease: 'power3.out', scrollTrigger: { trigger: element, start: 'top 92%' } })

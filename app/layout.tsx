@@ -8,6 +8,7 @@ import '../src/TriggerFlow.css'
 import '../src/NewHomeSections.css'
 import '../src/ExperienceEnhancements.css'
 import '../src/PortfolioAndLegal.css'
+import '../src/HomeRefinements.css'
 
 export const metadata: Metadata = {
   title: {

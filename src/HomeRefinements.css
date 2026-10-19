@@ -1,0 +1,123 @@
+/* Keep the hero copy and the animated mark in equal, independent columns. */
+@media (min-width: 761px) {
+  .hero {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(24px, 3vw, 48px);
+    align-content: center;
+    min-height: 700px;
+    padding-block: 44px 56px;
+  }
+
+  .hero-intro { grid-column: 1 / -1; grid-row: 1; }
+  .hero-title { grid-column: 1; grid-row: 2; width: 100%; min-width: 0; margin-top: 48px; }
+  .hero h1 { font-size: clamp(52px, 6.1vw, 98px); letter-spacing: -.055em; }
+
+  .hero .sculpture {
+    grid-column: 2;
+    grid-row: 2 / 4;
+    position: relative;
+    inset: auto;
+    align-self: center;
+    width: 100%;
+    max-width: none;
+    height: clamp(340px, 35vw, 530px);
+  }
+
+  .hero .hero-bottom {
+    grid-column: 1;
+    grid-row: 3;
+    grid-template-columns: 47px minmax(0, 1fr);
+    gap: 20px 22px;
+    min-width: 0;
+    margin-top: 32px;
+    align-self: start;
+  }
+
+  .hero .hero-bottom > p { min-width: 0; max-width: 100%; }
+}
+
+.hero .sculpture > .hero-logo-note {
+  display: inline-flex;
+  top: auto;
+  right: 0;
+  bottom: 100px;
+  max-width: none;
+  margin: 0;
+  gap: 8px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .hero .sculpture > .hero-logo-note { bottom: 100px; right: 3%; font-size: 6px; }
+}
+
+.reclaim-copy > p + p { margin-top: 20px; }
+.reclaim-copy > .reclaim-takeaway { color: #2b1942; font-weight: 650; }
+.reclaim-copy > .reclaim-takeaway + .text-link { margin-top: 26px; }
+
+.services .services-section-top { justify-content: center; text-align: center; }
+.services .services-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin: 28px 0 56px;
+  text-align: center;
+}
+.services .services-output-heading {
+  max-width: 100%;
+  font-size: clamp(22px, 3.2vw, 48px);
+  line-height: 1.5;
+  letter-spacing: -.045em;
+}
+.services-output-heading > span { display: block; }
+.services-output-heading mark {
+  padding: .02em .24em .06em;
+  color: #26154a;
+  background: #d7f654;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.services-output-heading mark.lilac-highlight { background: #d0bfff; }
+.services .services-heading > .text-link { margin-top: 0; }
+
+/* Equal copies include their trailing spacing, so the reset matches exactly. */
+.services-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: services-marquee-loop 180s linear infinite;
+  will-change: transform;
+}
+.services-marquee-group {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 32px;
+  padding-right: 32px;
+}
+.services-marquee-item {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 32px;
+  color: #51465f;
+  font-size: clamp(22px, 2.3vw, 37px);
+  letter-spacing: -.035em;
+  white-space: nowrap;
+}
+.services-marquee-item img { flex: 0 0 auto; }
+@keyframes services-marquee-loop { to { transform: translateX(-50%); } }
+.motion-off .services-marquee-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .services-marquee { overflow-x: auto; }
+  .services-marquee-track { animation: none; will-change: auto; }
+  .services-marquee-group[aria-hidden="true"] { display: none; }
+}
+
+@media (max-width: 760px) {
+  .services .services-heading { margin-bottom: 36px; gap: 20px; }
+  .services .services-output-heading { line-height: 1.55; }
+  .services-output-heading > span + span { margin-top: 6px; }
+}
