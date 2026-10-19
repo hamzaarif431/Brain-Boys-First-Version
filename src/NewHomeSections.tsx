@@ -5,11 +5,10 @@ import TestimonialCard from './TestimonialCard'
 
 const people = [
   { name: 'Muhammad Ahmed Ali', role: 'Chief Technology Officer', image: '/CTO.png' },
-  { name: 'Muhammad Asim', role: 'Business Development Manager', image: '/BDM.png' },
   { name: 'Ahsan Baghdadi', role: 'Chief Operating Officer ', image: '/COO.png' },
-
-  { name: 'Mohammad Hamzah', role: 'Senior Account Manager', image: '/AM.png' },
+  { name: 'Muhammad Asim', role: 'Business Development Manager', image: '/BDM.png' },
   { name: 'Fatima Ali', role: 'Senior Project Manager', image: '/SPM.png' },
+  { name: 'Mohammad Hamzah', role: 'Senior Account Manager', image: '/AM.png' },
   { name: 'Umamah Nadeem', role: 'Social Media Manager', image: '/SMM.png' },
   { name: 'Hamza Arif', role: 'AI Specialist', image: '/AI.png' },
   { name: 'Sakin Jaafer', role: 'Outreach Expert', image: '/team-zara.jpg' },
