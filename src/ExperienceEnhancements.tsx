@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
 import ExternalEmbed from './ExternalEmbed'
+import HomeCalendarLink from './HomeCalendarLink'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -199,7 +200,7 @@ function SocialIcon({ name }: { name: 'linkedin' | 'facebook' | 'instagram' }) {
   return <svg viewBox="0 0 24 24" aria-hidden="true"><path fillRule="evenodd" d="M7 2a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V7a5 5 0 0 0-5-5H7Zm0 2h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3Zm5 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm6-3.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/></svg>
 }
 
-export function SiteFooter({ isHome, motion, onToggleMotion, bookingHref }: { isHome: boolean; motion: boolean; onToggleMotion: () => void; bookingHref: string }) {
+export function SiteFooter({ isHome, motion, onToggleMotion }: { isHome: boolean; motion: boolean; onToggleMotion: () => void; bookingHref: string }) {
   return <footer className="footer" id="site-footer">
     <div className="footer-main">
       <div className="footer-brand-column">
@@ -214,7 +215,7 @@ export function SiteFooter({ isHome, motion, onToggleMotion, bookingHref }: { is
       <div className="footer-column"><span>PAGES</span><a href="/">Home</a><a href="/services">Services</a><a href="/hire-a-team">Hire a team</a><a href="/automation">Automation</a><a href="/portfolio">Portfolio</a><a href="/contact">Contact</a></div>
       <div className="footer-column"><span>SERVICES</span><a href="/services">Development</a><a href="/automation">AI & automation</a><a href="/services">Growth & creative</a><a href="https://crm.brainboys.ai/" target="_blank" rel="noopener noreferrer">GoHighLevel CRM ↗︎</a></div>
       <div className="footer-column"><span>LEGAL</span><a href="/privacy-policy">Privacy policy</a><a href="/terms-and-conditions">Terms & conditions</a></div>
-      <div className="footer-column footer-contact"><span>LET&apos;S CONNECT</span><p>Address : 5203 Juan Tabo Blvd STE 2B<br/>Albuquerque New Mexico 87111</p><a href="tel:+18889057962">+1 888-905-7962</a><a href="mailto:support@brainboys.ai">Support@brainboys.ai</a><a className="footer-call" href={bookingHref}>Book a strategy call <b className="ui-arrow" aria-hidden="true"/></a></div>
+      <div className="footer-column footer-contact"><span>LET&apos;S CONNECT</span><p>Address : 5203 Juan Tabo Blvd STE 2B<br/>Albuquerque New Mexico 87111</p><a href="tel:+18889057962">+1 888-905-7962</a><a href="mailto:support@brainboys.ai">Support@brainboys.ai</a><HomeCalendarLink className="footer-call">Book a strategy call <b className="ui-arrow" aria-hidden="true"/></HomeCalendarLink></div>
     </div>
     <div className="footer-bottom"><span>© 2026 Brainboys AI. All rights reserved.</span><span>HUMAN INGENUITY. AMPLIFIED.</span><div><a href="/privacy-policy">Privacy</a><a href="/terms-and-conditions">Terms</a><button aria-pressed={motion} onClick={onToggleMotion}>Motion {motion ? 'on' : 'off'} <i className={motion ? 'on' : ''}/></button><a href={isHome ? '#home' : '#main-content'}>Back to top ↑</a></div></div>
   </footer>

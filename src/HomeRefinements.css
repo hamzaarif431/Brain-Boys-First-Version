@@ -1,4 +1,5 @@
 /* Keep the hero copy and the animated mark in equal, independent columns. */
+.footer-contact .footer-call:hover,.footer-contact .footer-call:focus-visible { color: #fff; background: #5420b7; border-color: #5420b7; }
 @media (min-width: 761px) {
   .hero {
     display: grid;

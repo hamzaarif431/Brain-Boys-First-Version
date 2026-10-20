@@ -9,6 +9,7 @@ import AutomationExperience from './AutomationExperience'
 import { CRMSpotlight, ReviewsCTA } from './ExperienceEnhancements'
 import { useSiteMotion } from './App'
 import ServicesMarquee from './ServicesMarquee'
+import { useHomeCalendarScroll } from './HomeCalendarLink'
 
 const contact = '/contact'
 const services = [
@@ -24,6 +25,7 @@ const steps=[
 const Arrow=()=> <span className="ui-arrow" aria-hidden="true"/>
 
 export default function HomePage(){
+useHomeCalendarScroll()
 const [step,setStep]=useState(0)
 const {motion}=useSiteMotion()
 const tilt=(e: PointerEvent<HTMLElement>)=>{if(!motion||e.pointerType==='touch')return;const r=e.currentTarget.getBoundingClientRect();gsap.to('.mark-tilt',{rotationY:(e.clientX-r.left-r.width/2)/24,rotationX:-(e.clientY-r.top-r.height/2)/24,duration:.8})}
