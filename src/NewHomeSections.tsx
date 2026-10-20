@@ -6,10 +6,12 @@ import AIBotsSection from './AIBotsSection'
 
 const people = [
   { name: 'Muhammad Ahmed Ali', role: 'Chief Technical Officer', image: '/CTO.png' },
-  { name: 'Ahsan Baghdadi', role: 'Chief Operating Officer ', image: '/COO.png' },
   { name: 'Muhammad Asim', role: 'Business Development Manager', image: '/BDM.png' },
-  { name: 'Fatima Ali', role: 'Senior Project Manager', image: '/SPM.png' },
+  { name: 'Ahsan Baghdadi', role: 'Chief Operating Officer ', image: '/COO.png' },
+  
   { name: 'Mohammad Hamzah', role: 'Senior Account Manager', image: '/AM.png' },
+  { name: 'Fatima Ali', role: 'Senior Project Manager', image: '/SPM.png' },
+
   { name: 'Umamah Nadeem', role: 'Social Media Manager', image: '/SMM.png' },
   { name: 'Hamza Arif', role: 'AI Specialist', image: '/AI.png' },
   { name: 'Sakina Ramza Jaafer', role: 'Outreach Expert', image: '/OE.png' },
