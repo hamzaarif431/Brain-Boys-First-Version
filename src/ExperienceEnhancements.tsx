@@ -193,10 +193,10 @@ function ReviewsCTAContent({ audioSrc, unlocked }: { audioSrc?: string; unlocked
   </section>
 }
 
-function SocialIcon({ name }: { name: 'linkedin' | 'facebook' | 'globe' }) {
+function SocialIcon({ name }: { name: 'linkedin' | 'facebook' | 'instagram' }) {
   if (name === 'linkedin') return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.7 8.3H3.4V19h3.3V8.3ZM5 3a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm7.1 5.3H8.9V19h3.3v-5.3c0-1.4.3-2.8 2.1-2.8 1.8 0 1.8 1.7 1.8 2.9V19h3.3v-5.9c0-2.9-.6-5.1-4-5.1-1.6 0-2.7.9-3.2 1.7h-.1V8.3Z"/></svg>
   if (name === 'facebook') return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.2 8.2V6.7c0-.7.5-.9 1-.9h2.6V2.1L14.3 2c-3.5 0-4.4 2.1-4.4 4.3v1.9H7.6v4.2h2.3V22h4.3v-9.6h3.2l.5-4.2h-3.7Z"/></svg>
-  return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-3.1a15.6 15.6 0 0 0-1.4-3.4A8 8 0 0 1 18.9 8ZM12 4c.8 1 1.5 2.3 1.8 4h-3.6C10.5 6.3 11.2 5 12 4ZM4.3 14a8 8 0 0 1 0-4h3.5a16.5 16.5 0 0 0 0 4H4.3Zm.8 2h3.1a15.6 15.6 0 0 0 1.4 3.4A8 8 0 0 1 5.1 16Zm3.1-8H5.1a8 8 0 0 1 4.5-3.4A15.6 15.6 0 0 0 8.2 8Zm3.8 12c-.8-1-1.5-2.3-1.8-4h3.6c-.3 1.7-1 3-1.8 4Zm2.2-6H9.8a14.4 14.4 0 0 1 0-4h4.4a14.4 14.4 0 0 1 0 4Zm.2 5.4a15.6 15.6 0 0 0 1.4-3.4h3.1a8 8 0 0 1-4.5 3.4ZM16.2 14a16.5 16.5 0 0 0 0-4h3.5a8 8 0 0 1 0 4h-3.5Z"/></svg>
+  return <svg viewBox="0 0 24 24" aria-hidden="true"><path fillRule="evenodd" d="M7 2a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V7a5 5 0 0 0-5-5H7Zm0 2h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3Zm5 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm6-3.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/></svg>
 }
 
 export function SiteFooter({ isHome, motion, onToggleMotion, bookingHref }: { isHome: boolean; motion: boolean; onToggleMotion: () => void; bookingHref: string }) {
@@ -206,15 +206,15 @@ export function SiteFooter({ isHome, motion, onToggleMotion, bookingHref }: { is
         <a className="footer-brand" href="/" aria-label="Brainboys AI home"><img src="/brainboys-mark.png" alt=""/><span>BRAINBOYS AI</span></a>
         <p>Brilliant people and intelligent systems, connected around your next big move.</p>
         <div className="footer-socials">
-          <a href="https://www.linkedin.com/company/syncjourney" target="_blank" rel="noopener noreferrer" aria-label="Brainboys on LinkedIn"><SocialIcon name="linkedin"/></a>
-          <a href="https://www.facebook.com/profile.php?id=61570383265779" target="_blank" rel="noopener noreferrer" aria-label="Brainboys on Facebook"><SocialIcon name="facebook"/></a>
-          <a href="https://crm.brainboys.ai/" target="_blank" rel="noopener noreferrer" aria-label="Visit Brainboys CRM"><SocialIcon name="globe"/></a>
+          <a href="https://www.linkedin.com/company/brainboys-ai/" target="_blank" rel="noopener noreferrer" aria-label="Brainboys on LinkedIn"><SocialIcon name="linkedin"/></a>
+          <a href="https://www.facebook.com/brainboysai/" target="_blank" rel="noopener noreferrer" aria-label="Brainboys on Facebook"><SocialIcon name="facebook"/></a>
+          <a href="https://www.instagram.com/brainboys.ai" target="_blank" rel="noopener noreferrer" aria-label="Brainboys on Instagram"><SocialIcon name="instagram"/></a>
         </div>
       </div>
       <div className="footer-column"><span>PAGES</span><a href="/">Home</a><a href="/services">Services</a><a href="/hire-a-team">Hire a team</a><a href="/automation">Automation</a><a href="/portfolio">Portfolio</a><a href="/contact">Contact</a></div>
       <div className="footer-column"><span>SERVICES</span><a href="/services">Development</a><a href="/automation">AI & automation</a><a href="/services">Growth & creative</a><a href="https://crm.brainboys.ai/" target="_blank" rel="noopener noreferrer">GoHighLevel CRM ↗︎</a></div>
       <div className="footer-column"><span>LEGAL</span><a href="/privacy-policy">Privacy policy</a><a href="/terms-and-conditions">Terms & conditions</a></div>
-      <div className="footer-column footer-contact"><span>LET&apos;S CONNECT</span><p>Worldwide team<br/>Working remotely</p><a href="mailto:hello@brainboys.ai">hello@brainboys.ai</a><a className="footer-call" href={bookingHref}>Book a strategy call <b className="ui-arrow" aria-hidden="true"/></a></div>
+      <div className="footer-column footer-contact"><span>LET&apos;S CONNECT</span><p>Address : 5203 Juan Tabo Blvd STE 2B<br/>Albuquerque New Mexico 87111</p><a href="tel:+18889057962">+1 888-905-7962</a><a href="mailto:support@brainboys.ai">Support@brainboys.ai</a><a className="footer-call" href={bookingHref}>Book a strategy call <b className="ui-arrow" aria-hidden="true"/></a></div>
     </div>
     <div className="footer-bottom"><span>© 2026 Brainboys AI. All rights reserved.</span><span>HUMAN INGENUITY. AMPLIFIED.</span><div><a href="/privacy-policy">Privacy</a><a href="/terms-and-conditions">Terms</a><button aria-pressed={motion} onClick={onToggleMotion}>Motion {motion ? 'on' : 'off'} <i className={motion ? 'on' : ''}/></button><a href={isHome ? '#home' : '#main-content'}>Back to top ↑</a></div></div>
   </footer>
