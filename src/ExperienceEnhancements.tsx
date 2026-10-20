@@ -1,7 +1,7 @@
 'use client'
 
-import { Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { Suspense, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from 'react'
+import { usePathname } from 'next/navigation'
 import ExternalEmbed from './ExternalEmbed'
 import HomeCalendarLink from './HomeCalendarLink'
 import gsap from 'gsap'
@@ -110,9 +110,44 @@ export function ReviewsCTA({ audioSrc }: { audioSrc?: string } = {}) {
 }
 
 function ReviewsCTAAccess({ audioSrc }: { audioSrc?: string }) {
-  const searchParams = useSearchParams()
   const pathname = usePathname()
-  return <ReviewsCTAContent audioSrc={audioSrc} unlocked={pathname === '/' && searchParams.get('access') === 'granted'}/>
+  const hash = useSyncExternalStore(subscribeToHash, () => window.location.hash, () => '')
+  const [anchor, parameters = ''] = hash.slice(1).split('?')
+  const isReviewsSection = pathname === '/' && anchor === 'reviews-proof'
+  const unlocked = isReviewsSection && new URLSearchParams(parameters).get('access') === 'granted'
+
+  useEffect(() => {
+    if (!isReviewsSection) return
+    let frame = 0
+    let scheduled = false
+    const observer = new MutationObserver(() => schedule())
+    const schedule = () => {
+      if (scheduled || document.querySelector('.site-loader')) return
+      scheduled = true
+      observer.disconnect()
+      frame = requestAnimationFrame(() => {
+        ScrollTrigger.refresh()
+        document.getElementById('reviews-proof')?.scrollIntoView({
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+          block: 'start',
+        })
+      })
+    }
+    observer.observe(document.body, { childList: true, subtree: true })
+    schedule()
+    return () => { observer.disconnect(); cancelAnimationFrame(frame) }
+  }, [hash, isReviewsSection])
+
+  return <ReviewsCTAContent audioSrc={audioSrc} unlocked={unlocked}/>
+}
+
+function subscribeToHash(onChange: () => void) {
+  window.addEventListener('hashchange', onChange)
+  window.addEventListener('popstate', onChange)
+  return () => {
+    window.removeEventListener('hashchange', onChange)
+    window.removeEventListener('popstate', onChange)
+  }
 }
 
 function ReviewsCTAContent({ audioSrc, unlocked }: { audioSrc?: string; unlocked: boolean }) {

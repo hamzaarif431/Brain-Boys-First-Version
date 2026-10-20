@@ -70,9 +70,9 @@ export function PeopleSection() {
     window.addEventListener('pointerup', up)
     window.addEventListener('pointercancel', up)
     const timer = window.setInterval(() => {
-      if (!visible || document.hidden || hovered || dragging || reducedMotion.matches || slider.closest('.motion-off') || slider.querySelector(':focus-visible') || Date.now() - lastInteraction < 1500) return
+      if (!visible || document.hidden || hovered || dragging || reducedMotion.matches || slider.closest('.motion-off') || slider.querySelector(':focus-visible') || Date.now() - lastInteraction < 3000) return
       slideTeam(1)
-    }, 1500)
+    }, 3000)
     return () => {
       window.clearInterval(timer)
       observer.disconnect()
