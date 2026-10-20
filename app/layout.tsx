@@ -9,6 +9,7 @@ import '../src/NewHomeSections.css'
 import '../src/ExperienceEnhancements.css'
 import '../src/PortfolioAndLegal.css'
 import '../src/HomeRefinements.css'
+import '../src/AIBotsSection.css'
 
 export const metadata: Metadata = {
   title: {

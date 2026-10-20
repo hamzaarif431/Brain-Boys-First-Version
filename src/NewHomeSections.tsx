@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import ExternalEmbed from './ExternalEmbed'
 import TestimonialCard from './TestimonialCard'
+import AIBotsSection from './AIBotsSection'
 
 const people = [
   { name: 'Muhammad Ahmed Ali', role: 'Chief Technical Officer', image: '/CTO.png' },
@@ -114,6 +115,7 @@ export function PeopleSection() {
       
     </article>)}</div>
     </div>
+    <AIBotsSection/>
     <dialog className="founder-calendar" ref={calendarRef} aria-labelledby="founder-calendar-title" onClose={() => setCalendarOpen(false)} onClick={event => { if (event.target === event.currentTarget) calendarRef.current?.close() }}>
       <div className="founder-calendar-header booking-topbar"><div><img src="/brainboys-mark.png" alt="Brainboys AI" width="52" height="52"/><p><strong id="founder-calendar-title">Brainboys consultation</strong><small>30 minutes · With Muhammad Faraz</small></p></div><div className="founder-calendar-actions"><span className="founder-calendar-status"><i aria-hidden="true"/> Calendar live</span><button type="button" className="founder-calendar-close" onClick={() => calendarRef.current?.close()} aria-label="Close booking calendar">×</button></div></div>
       <div className="founder-calendar-body">{calendarReady && <ExternalEmbed src="https://api.brainboys.ai/widget/booking/GKgTE4I3nRlJlnZb0ID1" allow="payment" scrolling="no" id="GKgTE4I3nRlJlnZb0ID1_1792086109034" title="Book a call with Muhammad Faraz"/>}</div>
