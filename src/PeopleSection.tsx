@@ -13,6 +13,8 @@ const people = [
   { name: 'Umamah Nadeem', role: 'Social Media Manager', image: '/SMM.png' },
   { name: 'Hamza Arif', role: 'AI Specialist', image: '/AI.png' },
   { name: 'Sakina Ramza Jaafer', role: 'Outreach Expert', image: '/OE.png' },
+  { name: 'Mubeen Saleem', role: 'Wordpress Expert', image: '/WE.png' },
+  { name: 'Abdul Haseeb', role: 'Funnel Expert', image: '/FE.png' },
 ]
 
 export default function PeopleSection() {
