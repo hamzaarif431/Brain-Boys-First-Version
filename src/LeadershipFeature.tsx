@@ -13,13 +13,6 @@ const leaders = {
     focus: ['CRM & customer systems', 'AI & automation', 'Team & delivery'],
     note: 'ONE VISION.', promise: 'A team that feels like yours.',
   },
-  cfo: {
-    name: 'Ahsan Bhaghdadi', title: 'CHIEF FINANCIAL OFFICER', image: '/ahsan-bhaghdadi-cutout-v2.png', width: 1122, height: 1402,
-    eyebrow: 'CLEAR THINKING. CONFIDENT GROWTH.',
-    description: 'Financial clarity behind every next step. Ahsan Bhaghdadi supports BrainBoys Ai with thoughtful planning, responsible resource management and a clear focus on sustainable business growth.',
-    focus: ['Financial planning', 'Business strategy', 'Sustainable growth'],
-    note: 'A SHARED AMBITION.', promise: 'A stronger foundation for what’s next.',
-  },
 }
 
 export default function LeadershipFeature({ role }: { role: keyof typeof leaders }) {

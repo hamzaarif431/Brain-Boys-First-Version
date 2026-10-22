@@ -1,6 +1,6 @@
 'use client'
 
-import LeadershipFeature from './LeadershipFeature'
+import FounderStory from './FounderStory'
 
 const people = [
   { name: 'Muhammad Faraz', role: 'Chief Executive Officer', image: '/muhammad-faraz-cutout-v2.png' },
@@ -19,7 +19,7 @@ export default function PeopleSection() {
   return <section className="people-section section" id="experts" aria-labelledby="people-title">
     <div className="section-top reveal"><span className="eyebrow">THE PEOPLE BEHIND THE POSSIBILITY</span><span className="muted">People first. Powerful work follows.</span></div>
     <div className="people-heading reveal"><div><h2 id="people-title">The people behind<br/><span className="serif">the work.</span></h2><p>A senior core team, plus specialists matched to your stack. Every project starts with people who know how to move it forward.</p></div><a className="text-link" href="/contact">Meet your next team ↗︎</a></div>
-    <LeadershipFeature role="cfo"/>
+    <FounderStory/>
     <div className="internal-team-heading reveal"><div><span className="eyebrow">OUR INTERNAL TEAM</span><h3>Different minds.<br/><span className="serif">One shared standard.</span></h3></div><p>The people who turn the plan into progress. Your core team, connected from brief to delivery.</p></div>
     <div className="people-grid about-team-grid">{people.map((person, index) => <article className={`people-card${person.role === 'Chief Executive Officer' ? ' people-card-ceo' : ''}`} key={person.name}>
       <img src={person.image} alt={`${person.name}, ${person.role} at BrainBoys Ai`} loading="lazy" width="640" height="800" />

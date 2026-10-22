@@ -11,6 +11,7 @@ import '../src/PortfolioAndLegal.css'
 import '../src/HomeRefinements.css'
 import '../src/AIBotsSection.css'
 import '../src/AboutPage.css'
+import '../src/FounderStory.css'
 
 export const metadata: Metadata = {
   title: {
