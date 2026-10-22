@@ -67,7 +67,7 @@ export function PortfolioPage() {
       <div className="portfolio-filters" aria-label="Filter portfolio projects">{filters.map(name => <button key={name} aria-pressed={filter === name} onClick={() => setFilter(name)}>{name}<span>{name === 'All' ? portfolioItems.length : portfolioItems.filter(item => item.category === name).length}</span></button>)}</div>
       <p className="portfolio-count" role="status">Showing {visible.length} {filter === 'All' ? 'projects across every capability' : `${filter} projects`}</p>
       <div className="portfolio-grid" ref={gridRef}>{visible.map((item, index) => <article className="portfolio-card" key={`${item.category}-${item.src}`} tabIndex={0}>
-        <div className="portfolio-browser"><div className="portfolio-browser-bar"><i/><i/><i/><span>brainboys / selected work</span></div><div className="portfolio-preview"><img src={item.src} alt={`${item.category} website project preview`} loading={index < 2 ? 'eager' : 'lazy'} decoding="async" fetchPriority={index < 2 ? 'high' : 'low'} /></div></div>
+        <div className="portfolio-browser"><div className="portfolio-browser-bar"><i/><i/><i/><span>BrainBoys Ai / selected work</span></div><div className="portfolio-preview"><img src={item.src} alt={`${item.category} website project preview`} loading={index < 2 ? 'eager' : 'lazy'} decoding="async" fetchPriority={index < 2 ? 'high' : 'low'} /></div></div>
         <div className="portfolio-card-meta"><span>{String(index + 1).padStart(2, '0')} / {item.category.toUpperCase()}</span><h3>{item.label}</h3><b>SCROLL PREVIEW ↓</b></div>
       </article>)}</div>
     </section>

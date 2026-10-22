@@ -31,12 +31,12 @@ export function SiteLoader() {
   }, [visible])
 
   if (!visible) return null
-  return <div className={`site-loader${leaving ? ' is-leaving' : ''}`} role="status" aria-live="polite" aria-label="Brainboys AI is loading">
+  return <div className={`site-loader${leaving ? ' is-leaving' : ''}`} role="status" aria-live="polite" aria-label="BrainBoys Ai is loading">
     <div className="loader-glow" aria-hidden="true" />
     <div className="loader-orbit loader-orbit-one" aria-hidden="true"><i/><b/></div>
     <div className="loader-orbit loader-orbit-two" aria-hidden="true"><i/></div>
     <img className="loader-mark" src="/brainboys-mark.png" alt="" />
-    <div className="loader-copy"><span>BRILLIANT MINDS</span><strong>brainboys<span>.</span></strong><small>CONNECTING PEOPLE × SYSTEMS × POSSIBILITY</small></div>
+    <div className="loader-copy"><span>BRILLIANT MINDS</span><strong>BrainBoys Ai<span>.</span></strong><small>CONNECTING PEOPLE × SYSTEMS × POSSIBILITY</small></div>
     <div className="loader-progress" aria-hidden="true"><i/></div>
     <span className="loader-index">BB / 001</span>
   </div>
@@ -81,7 +81,7 @@ export function CRMSpotlight({ motion }: { motion: boolean }) {
     <div className="crm-shell">
       <div className="crm-brand-visual">
         <div className="crm-logo-stage">
-          <div className="crm-logo-frame"><img src="/brainboys-crm-mark-transparent.png" alt="Brain Boys CRM brand mark" /></div>
+          <div className="crm-logo-frame"><img src="/brainboys-crm-mark-transparent.png" alt="BrainBoys CRM brand mark" /></div>
           <span className="crm-floating-note note-one">AI AUTOMATION <b>↗︎</b></span>
           <span className="crm-floating-note note-two">EVERYTHING. CONNECTED.</span>
           <div className="crm-dashboard-card" aria-hidden="true">
@@ -95,11 +95,11 @@ export function CRMSpotlight({ motion }: { motion: boolean }) {
       </div>
       <div className="crm-copy">
         <span className="crm-kicker"><i/> A BRAINIER WAY TO RUN YOUR BUSINESS</span>
-        <span className="crm-overline">BRAINBOYS CRM / CONNECTED GROWTH</span>
+        <span className="crm-overline">BrainBoys CRM / CONNECTED GROWTH</span>
         <h2 id="crm-title">Bright minds.<br/>Better systems.<br/><em>Bigger possibilities.</em></h2>
-        <p>Your business has big ideas. Brainboys CRM builds the connected system that brings them to life — capturing leads, nurturing relationships, closing deals and keeping every customer journey moving.</p>
-        <div className="crm-capabilities"><span>AI automation</span><span>GoHighLevel CRM</span><span>Custom development</span></div>
-        <a href="https://crm.brainboys.ai/" target="_blank" rel="noopener noreferrer">Explore Brainboys CRM <span>↗︎</span></a>
+        <p>Your business has big ideas. BrainBoys CRM builds the connected system that brings them to life — capturing leads, nurturing relationships, closing deals and keeping every customer journey moving.</p>
+        <div className="crm-capabilities"><span>AI automation</span><span>BrainBoys CRM</span><span>Custom development</span></div>
+        <a href="https://crm.brainboys.ai/" target="_blank" rel="noopener noreferrer">Explore BrainBoys CRM <span>↗︎</span></a>
       </div>
     </div>
   </section>
@@ -198,10 +198,10 @@ function ReviewsCTAContent({ audioSrc, unlocked }: { audioSrc?: string; unlocked
   }, [])
   return <section className="reviews-cta" id="reviews-proof" ref={sectionRef} aria-label="Client reviews and AI agent call">
     <div className="reviews-cta-sticky">
-      <div className="reviews-cta-media"><img className="reviews-cta-art" src="/brainboys-reviews-doodle.webp" width="1756" height="896" alt="A doodle wall of five-star client reviews for the Brainboys team"/></div>
+      <div className="reviews-cta-media"><img className="reviews-cta-art" src="/brainboys-reviews-doodle.webp" width="1756" height="896" alt="A doodle wall of five-star client reviews for the BrainBoys Ai team"/></div>
       <div className="reviews-cta-content">
         {unlocked ? <div className="reviews-audio-player" role="region" tabIndex={-1} aria-label="AI agent recording">
-          <span className="eyebrow">BRAINBOYS / AI AGENT</span>
+          <span className="eyebrow">BrainBoys Ai / AI AGENT</span>
           <h3>Your AI agent preview</h3>
           {audioSrc ? <audio controls preload="none" src={audioSrc}>Your browser does not support audio playback.</audio> : <><button className="audio-awaiting" disabled aria-label="Recording not available yet"><span aria-hidden="true">▶</span> Recording coming soon</button><p>Your access is unlocked. The recording will appear here when it is ready.</p></>}
         </div> : <button ref={callRef} type="button" className="reviews-agent-call" onClick={openOptIn} aria-label="Talk with Our AI Agent" aria-haspopup="dialog">
@@ -239,20 +239,20 @@ export function SiteFooter({ isHome, motion, onToggleMotion }: { isHome: boolean
   return <footer className="footer" id="site-footer">
     <div className="footer-main">
       <div className="footer-brand-column">
-        <a className="footer-brand" href="/" aria-label="Brainboys AI home"><img src="/brainboys-mark.png" alt=""/><span>BRAINBOYS AI</span></a>
+        <a className="footer-brand" href="/" aria-label="BrainBoys Ai home"><img src="/brainboys-mark.png" alt=""/><span>BrainBoys Ai</span></a>
         <p>Brilliant people and intelligent systems, connected around your next big move.</p>
         <div className="footer-socials">
-          <a href="https://www.linkedin.com/company/brainboys-ai/" target="_blank" rel="noopener noreferrer" aria-label="Brainboys on LinkedIn"><SocialIcon name="linkedin"/></a>
-          <a href="https://www.facebook.com/brainboysai/" target="_blank" rel="noopener noreferrer" aria-label="Brainboys on Facebook"><SocialIcon name="facebook"/></a>
-          <a href="https://www.instagram.com/brainboys.ai" target="_blank" rel="noopener noreferrer" aria-label="Brainboys on Instagram"><SocialIcon name="instagram"/></a>
+          <a href="https://www.linkedin.com/company/brainboys-ai/" target="_blank" rel="noopener noreferrer" aria-label="BrainBoys Ai on LinkedIn"><SocialIcon name="linkedin"/></a>
+          <a href="https://www.facebook.com/brainboysai/" target="_blank" rel="noopener noreferrer" aria-label="BrainBoys Ai on Facebook"><SocialIcon name="facebook"/></a>
+          <a href="https://www.instagram.com/brainboys.ai" target="_blank" rel="noopener noreferrer" aria-label="BrainBoys Ai on Instagram"><SocialIcon name="instagram"/></a>
         </div>
       </div>
-      <div className="footer-column"><span>PAGES</span><a href="/">Home</a><a href="/services">Services</a><a href="/hire-a-team">Hire a team</a><a href="/automation">Automation</a><a href="/portfolio">Portfolio</a><a href="/contact">Contact</a></div>
-      <div className="footer-column"><span>SERVICES</span><a href="/services">Development</a><a href="/automation">AI & automation</a><a href="/services">Growth & creative</a><a href="https://crm.brainboys.ai/" target="_blank" rel="noopener noreferrer">GoHighLevel CRM ↗︎</a></div>
+      <div className="footer-column"><span>PAGES</span><a href="/">Home</a><a href="/about-us">About us</a><a href="/services">Services</a><a href="/hire-a-team">Hire a team</a><a href="/automation">Automation</a><a href="/portfolio">Portfolio</a><a href="/contact">Contact</a></div>
+      <div className="footer-column"><span>SERVICES</span><a href="/services">Development</a><a href="/automation">AI & automation</a><a href="/services">Growth & creative</a><a href="https://crm.brainboys.ai/" target="_blank" rel="noopener noreferrer">BrainBoys CRM ↗︎</a></div>
       <div className="footer-column"><span>LEGAL</span><a href="/privacy-policy">Privacy policy</a><a href="/terms-and-conditions">Terms & conditions</a></div>
       <div className="footer-column footer-contact"><span>LET&apos;S CONNECT</span><p>Address : 5203 Juan Tabo Blvd STE 2B<br/>Albuquerque New Mexico 87111</p><a href="tel:+18889057962">+1 888-905-7962</a><a href="mailto:support@brainboys.ai">Support@brainboys.ai</a><HomeCalendarLink className="footer-call">Book a strategy call <b className="ui-arrow" aria-hidden="true"/></HomeCalendarLink></div>
     </div>
-    <div className="footer-bottom"><span>© 2026 Brainboys AI. All rights reserved.</span><span>HUMAN INGENUITY. AMPLIFIED.</span><div><a href="/privacy-policy">Privacy</a><a href="/terms-and-conditions">Terms</a><button aria-pressed={motion} onClick={onToggleMotion}>Motion {motion ? 'on' : 'off'} <i className={motion ? 'on' : ''}/></button><a href={isHome ? '#home' : '#main-content'}>Back to top ↑</a></div></div>
+    <div className="footer-bottom"><span>© 2026 BrainBoys Ai AI. All rights reserved.</span><span>HUMAN INGENUITY. AMPLIFIED.</span><div><a href="/privacy-policy">Privacy</a><a href="/terms-and-conditions">Terms</a><button aria-pressed={motion} onClick={onToggleMotion}>Motion {motion ? 'on' : 'off'} <i className={motion ? 'on' : ''}/></button><a href={isHome ? '#home' : '#main-content'}>Back to top ↑</a></div></div>
   </footer>
 }
 

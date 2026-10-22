@@ -1,130 +1,7 @@
 // @refresh reset
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ExternalEmbed from './ExternalEmbed'
 import TestimonialCard from './TestimonialCard'
-import AIBotsSection from './AIBotsSection'
-
-const people = [
-  { name: 'Muhammad Ahmed Ali', role: 'Chief Technical Officer', image: '/CTO.png' },
-  { name: 'Muhammad Asim', role: 'Business Development Manager', image: '/BDM.png' },
-  { name: 'Ahsan Baghdadi', role: 'Chief Operating Officer ', image: '/COO.png' },
-  
-  { name: 'Mohammad Hamzah', role: 'Senior Account Manager', image: '/AM.png' },
-  { name: 'Fatima Ali', role: 'Senior Project Manager', image: '/SPM.png' },
-
-  { name: 'Umamah Nadeem', role: 'Social Media Manager', image: '/SMM.png' },
-  { name: 'Hamza Arif', role: 'AI Specialist', image: '/AI.png' },
-  { name: 'Sakina Ramza Jaafer', role: 'Outreach Expert', image: '/OE.png' },
-]
-
-export function PeopleSection() {
-  const calendarRef = useRef<HTMLDialogElement>(null)
-  const teamStripRef = useRef<HTMLDivElement>(null)
-  const teamSliderRef = useRef<HTMLDivElement>(null)
-  const [calendarReady, setCalendarReady] = useState(false)
-  const [calendarOpen, setCalendarOpen] = useState(false)
-
-  useEffect(() => {
-    if (!calendarOpen) return
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    return () => { document.body.style.overflow = previousOverflow }
-  }, [calendarOpen])
-
-  const openCalendar = () => {
-    setCalendarReady(true)
-    setCalendarOpen(true)
-    calendarRef.current?.showModal()
-  }
-
-  const slideTeam = useCallback((direction: number) => {
-    const strip = teamStripRef.current
-    if (!strip) return
-    const card = strip.querySelector<HTMLElement>('.people-card')
-    const gap = Number.parseFloat(getComputedStyle(strip).columnGap) || 18
-    const maxScroll = strip.scrollWidth - strip.clientWidth
-    const atEnd = strip.scrollLeft >= maxScroll - 2
-    const atStart = strip.scrollLeft <= 2
-    const next = direction > 0 && atEnd ? 0 : direction < 0 && atStart ? maxScroll : strip.scrollLeft + direction * ((card?.offsetWidth ?? 360) + gap)
-    strip.scrollTo({ left: next, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
-  }, [])
-
-  useEffect(() => {
-    const slider = teamSliderRef.current
-    if (!slider || calendarOpen) return
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
-    let visible = false
-    let hovered = window.matchMedia('(hover: hover)').matches && slider.matches(':hover')
-    let dragging = false
-    let lastInteraction = 0
-    const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting }, { threshold: .15 })
-    observer.observe(slider)
-    const enter = (event: PointerEvent) => { if (event.pointerType === 'mouse') hovered = true }
-    const leave = () => { hovered = false }
-    const down = () => { dragging = true; lastInteraction = Date.now() }
-    const up = () => { if (dragging) { dragging = false; lastInteraction = Date.now() } }
-    const interact = () => { lastInteraction = Date.now() }
-    slider.addEventListener('pointerenter', enter)
-    slider.addEventListener('pointerleave', leave)
-    slider.addEventListener('pointerdown', down)
-    slider.addEventListener('wheel', interact, { passive: true })
-    slider.addEventListener('keydown', interact)
-    window.addEventListener('pointerup', up)
-    window.addEventListener('pointercancel', up)
-    const timer = window.setInterval(() => {
-      if (!visible || document.hidden || hovered || dragging || reducedMotion.matches || slider.closest('.motion-off') || slider.querySelector(':focus-visible') || Date.now() - lastInteraction < 3000) return
-      slideTeam(1)
-    }, 3000)
-    return () => {
-      window.clearInterval(timer)
-      observer.disconnect()
-      slider.removeEventListener('pointerenter', enter)
-      slider.removeEventListener('pointerleave', leave)
-      slider.removeEventListener('pointerdown', down)
-      slider.removeEventListener('wheel', interact)
-      slider.removeEventListener('keydown', interact)
-      window.removeEventListener('pointerup', up)
-      window.removeEventListener('pointercancel', up)
-    }
-  }, [calendarOpen, slideTeam])
-
-  return <section className="people-section section" id="experts" aria-labelledby="people-title">
-    <div className="section-top reveal"><span className="eyebrow">THE PEOPLE BEHIND THE POSSIBILITY</span><span className="muted">People first. Powerful work follows.</span></div>
-    <div className="people-heading reveal"><div><h2 id="people-title">The people behind<br/><span className="serif">the work.</span></h2><p>A senior core team, plus specialists matched to your stack. Every project starts with people who know how to move it forward.</p></div><a className="text-link" href="/contact">Meet your next team ↗︎</a></div>
-    <article className="founder-feature reveal" aria-labelledby="founder-title">
-      <div className="founder-portrait">
-        <span className="founder-orbit" aria-hidden="true"/>
-        <img className="founder-photo" src="/muhammad-faraz-cutout-v2.png" alt="Muhammad Faraz, CEO of Brainboys AI" width="1122" height="1402" loading="lazy"/>
-        <div className="founder-nameplate"><span>CHIEF EXECUTIVE OFFICER</span><strong>Muhammad Faraz</strong><img src="/brainboys-mark.png" width="48" height="48" alt=""/></div>
-      </div>
-      <div className="founder-copy">
-        <span className="eyebrow"><i/> LEADERSHIP, WITH A PERSONAL TOUCH</span>
-        <h3 id="founder-title">Meet the <span className="serif">CEO.</span></h3>
-        <p className="founder-intro">Muhammad Faraz</p>
-        <p>Bringing people, technology and execution together. Muhammad Faraz leads Brainboys AI with a focus on connected systems, clear communication and work that moves your business forward.</p>
-        <div className="founder-focus"><span>CRM & customer systems</span><span>AI & automation</span><span>Team & delivery</span></div>
-        <div className="founder-bottom"><div><span>ONE VISION.</span><strong>A team that feels like yours.</strong></div><button className="founder-contact" type="button" onClick={openCalendar} aria-haspopup="dialog">Let’s connect <span className="ui-arrow" aria-hidden="true"/></button></div>
-      </div>
-    </article>
-    <div className="internal-team-heading reveal"><div><span className="eyebrow">OUR INTERNAL TEAM</span><h3>Six minds.<br/><span className="serif">One shared standard.</span></h3></div><p>The people who turn the plan into progress. Your core team, connected from brief to delivery.</p></div>
-    <div className="people-slider reveal" ref={teamSliderRef}>
-    <div className="people-slider-toolbar"><span>SCROLL TO MEET THE TEAM</span><div className="stories-controls"><button type="button" aria-label="Previous team member" aria-controls="internal-team-slider" onClick={() => slideTeam(-1)}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg></button><button type="button" aria-label="Next team member" aria-controls="internal-team-slider" onClick={() => slideTeam(1)}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div></div>
-    <div className="people-grid people-slider-track" id="internal-team-slider" ref={teamStripRef} tabIndex={0} role="region" aria-roledescription="carousel" aria-label="Our internal team. Swipe or scroll horizontally to see all team members.">{people.map((person, index) => <article className="people-card" key={person.name}>
-      <img src={person.image} alt={`${person.name}, ${person.role} at Brainboys AI`} loading="lazy" width="640" height="800" />
-      <div className="people-card-shade" />
-      <span className="people-card-number">0{index + 1}</span>
-      <div className="people-card-copy"><span className="people-card-role">{person.role}</span><h3>{person.name}</h3><p>Part of the core delivery team — matched to your stack from day one.</p></div>
-      
-    </article>)}</div>
-    </div>
-    <AIBotsSection/>
-    <dialog className="founder-calendar" ref={calendarRef} aria-labelledby="founder-calendar-title" onClose={() => setCalendarOpen(false)} onClick={event => { if (event.target === event.currentTarget) calendarRef.current?.close() }}>
-      <div className="founder-calendar-header booking-topbar"><div><img src="/brainboys-mark.png" alt="Brainboys AI" width="52" height="52"/><p><strong id="founder-calendar-title">Brainboys consultation</strong><small>30 minutes · With Muhammad Faraz</small></p></div><div className="founder-calendar-actions"><span className="founder-calendar-status"><i aria-hidden="true"/> Calendar live</span><button type="button" className="founder-calendar-close" onClick={() => calendarRef.current?.close()} aria-label="Close booking calendar">×</button></div></div>
-      <div className="founder-calendar-body">{calendarReady && <ExternalEmbed src="https://api.brainboys.ai/widget/booking/GKgTE4I3nRlJlnZb0ID1" allow="payment" scrolling="no" id="GKgTE4I3nRlJlnZb0ID1_1792086109034" title="Book a call with Muhammad Faraz"/>}</div>
-      <div className="booking-trust founder-calendar-trust"><span>🔒 Secure booking</span><span>✓ No commitment</span><span>✓ Confirmation sent instantly</span></div>
-    </dialog>
-  </section>
-}
 
 const plans = [
   { number: '01', name: 'Project Based', tag: 'FOCUSED EXPERTISE', description: 'Expert support for a clearly defined project, from your first brief to final delivery.', features: ['Specialists matched to your project', 'Clear scope, timeline and deliverables', 'Direct collaboration with your team', 'Progress updates at every milestone'], action: 'Start your project', href: '#project-based' },
@@ -219,7 +96,7 @@ export function VideoTestimonialsSection() {
   }
   return <section className="video-stories section" id="video-stories" aria-labelledby="stories-title">
     <div className="section-top reveal"><span className="eyebrow">CLIENT VIDEO STORIES</span><span className="muted">Real voices. Real working relationships.</span></div>
-    <div className="stories-heading reveal"><div><h2 id="stories-title">Don&apos;t take our word.<br/><span className="serif">Take theirs.</span></h2><p>Hear directly from clients who have worked with the Brainboys team.</p></div><div className="stories-controls"><button type="button" aria-label="Previous video testimonial" onClick={() => slide(-1)}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg></button><button type="button" aria-label="Next video testimonial" onClick={() => slide(1)}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div></div>
+    <div className="stories-heading reveal"><div><h2 id="stories-title">Don&apos;t take our word.<br/><span className="serif">Take theirs.</span></h2><p>Hear directly from clients who have worked with the BrainBoys Ai team.</p></div><div className="stories-controls"><button type="button" aria-label="Previous video testimonial" onClick={() => slide(-1)}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg></button><button type="button" aria-label="Next video testimonial" onClick={() => slide(1)}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div></div>
     <div className="stories-strip" ref={stripRef} tabIndex={0} aria-label="Client video testimonials. Scroll horizontally to see more.">{stories.map((story, index) => <TestimonialCard key={story.id} story={story} index={index} playing={playing === story.id} onPlay={() => setPlaying(story.id)} onClose={() => setPlaying(null)}/>)}</div>
     <div className="stories-end"><span>DRAG OR SCROLL TO EXPLORE MORE STORIES</span><span aria-hidden="true">↔</span></div>
   </section>
@@ -250,7 +127,7 @@ export function CertificationSection() {
 export function BookingSection() {
   return <section className="booking-section" id="book-calendar" aria-labelledby="booking-title"><div className="booking-inner section">
     <header className="booking-heading reveal"><span className="eyebrow"><i/> PICK A TIME THAT WORKS</span><h2 id="booking-title">Let&apos;s put the next move<br/><span className="serif">on your calendar.</span></h2><p>Choose a time below for a free 30-minute consultation. We&apos;ll map the right expert, team or automation path for your business.</p></header>
-    <div className="booking-card reveal"><div className="booking-topbar"><div><img src="/brainboys-mark.png" alt="Brainboys AI" width="52" height="52"/><p><strong>Brainboys consultation</strong><small>30 minutes · Free strategy call</small></p></div><span><i/> Calendar live</span></div><div className="booking-frame"><ExternalEmbed embedScript={false} id="brainboys-calendar" src="https://api.leadconnectorhq.com/widget/bookings/brain-boys" title="Book a consultation with Brainboys" loading="lazy" /></div><div className="booking-trust"><span>🔒 Secure booking</span><span>✓ No commitment</span><span>✓ Confirmation sent instantly</span></div></div>
+    <div className="booking-card reveal"><div className="booking-topbar"><div><img src="/brainboys-mark.png" alt="BrainBoys Ai" width="52" height="52"/><p><strong>BrainBoys Ai consultation</strong><small>30 minutes · Free strategy call</small></p></div><span><i/> Calendar live</span></div><div className="booking-frame"><ExternalEmbed embedScript={false} id="brainboys-calendar" src="https://api.leadconnectorhq.com/widget/bookings/brain-boys" title="Book a consultation with BrainBoys Ai" loading="lazy" /></div><div className="booking-trust"><span>🔒 Secure booking</span><span>✓ No commitment</span><span>✓ Confirmation sent instantly</span></div></div>
   </div></section>
 }
 

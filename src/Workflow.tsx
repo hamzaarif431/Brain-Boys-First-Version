@@ -9,11 +9,11 @@ const steps = [
     label: '01 — SUBMIT YOUR BRIEF', type: 'PROJECT BRIEF', node: 'Request received', icon: '↗︎', status: 'Received',
     title: 'Tell us what you need done.',
     text: 'Share your project scope, from GHL and n8n automations to API integrations or web builds. No lengthy sales calls or monthly retainers.',
-    tools: ['GoHighLevel', 'Web Development'],
+    tools: ['BrainBoys CRM', 'Web Development'],
   },
   {
     label: '02 — GET MATCHED', type: 'TEAM PLACEMENT', node: 'Experts assigned', icon: '≡', status: 'Assigned',
-    title: 'Your experts. Within 48 hours.',
+    title: 'Your experts Within 48 hours.',
     text: 'Get a fixed scope, clear timeline, and exact cost upfront. We assign the right developers, automators, or marketers within 48 hours.',
     tools: ['Fixed Pricing', 'Expert Team'],
   },
@@ -25,13 +25,13 @@ const steps = [
   },
   {
     label: '04 — MANAGED EXECUTION', type: 'PROJECT DELIVERY', node: 'Work in progress', icon: '⌘', status: 'Building',
-    title: 'We build. You stay focused.',
+    title: 'We build You stay focused.',
     text: 'A dedicated Project Manager handles tasks, quality, and timelines while you track live progress. No micromanagement required.',
     tools: ['Project Management', 'Live Tracking'],
   },
   {
     label: '05 — REPORT & SCALE', type: 'REPORTING', node: 'Progress delivered', icon: '✓', status: 'Delivered',
-    title: 'Full control. No surprises.',
+    title: 'Full control No surprises.',
     text: 'Get weekly reports on completed work and hours used. Review deliverables, approve progress, and pause or scale whenever needed.',
     tools: ['Weekly Reports', 'Flexible Scaling'],
   },
@@ -192,7 +192,7 @@ export default function Workflow({ motion = true }: { motion?: boolean }) {
     <div className="tf2-sticky">
       <header className="tf2-heading">
         <span className="eyebrow"><i /> Never pay for agency &quot;bench time&quot; again.</span>
-        <h2 id="trigger-title">How Brain Boys Works : <span className="serif">5 Steps to Pure Output</span></h2>
+        <h2 id="trigger-title">How BrainBoys Ai Works : <span className="serif">5 Steps to Pure Output</span></h2>
         <div className="tf2-heading-actions"><p>One scroll moves one handoff forward.</p>{motion && <button type="button" className="tf2-skip" onClick={skipAnimation}>Skip animation <span>→</span></button>}</div>
       </header>
       <div className="tf2-viewport">
@@ -215,7 +215,7 @@ export default function Workflow({ motion = true }: { motion?: boolean }) {
       </div>
       <div className="tf2-finale-scroll">
         <div className="tf2-finale">
-          <canvas ref={canvasRef} className="tf2-gif" width="960" height="960" role="img" aria-label="Brainboys team and connected nodes forming the Brainboys name" />
+          <canvas ref={canvasRef} className="tf2-gif" width="960" height="960" role="img" aria-label="BrainBoys Ai team and connected nodes forming the BrainBoys Ai name" />
           <a href="/contact">Start Your Project <span className="ui-arrow" aria-hidden="true" /></a>
         </div>
       </div>

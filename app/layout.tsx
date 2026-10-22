@@ -10,14 +10,15 @@ import '../src/ExperienceEnhancements.css'
 import '../src/PortfolioAndLegal.css'
 import '../src/HomeRefinements.css'
 import '../src/AIBotsSection.css'
+import '../src/AboutPage.css'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Brainboys AI — Brilliant minds. One team.',
-    template: '%s — Brainboys AI',
+    default: 'BrainBoys Ai — Brilliant minds. One team.',
+    template: '%s — BrainBoys Ai',
   },
   description: 'Connected specialists and intelligent automation.',
-  keywords: ['Brainboys AI', 'AI automation', 'digital specialists', 'business growth'],
+  keywords: ['BrainBoys Ai', 'AI automation', 'digital specialists', 'business growth'],
   icons: { icon: '/icon.png', shortcut: '/icon.png', apple: '/icon.png' },
 }
 

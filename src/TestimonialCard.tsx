@@ -29,7 +29,7 @@ export default function TestimonialCard({ story, index, playing, onPlay, onClose
 
   return <article className={'story-card' + (playing ? ' is-playing' : '')}>
     <div className="story-media">
-      <img className="story-poster" src={story.poster} alt={`Client from Brainboys video story ${index + 1}`} width="640" height="1138" loading="lazy" decoding="async"/>
+      <img className="story-poster" src={story.poster} alt={`Client from BrainBoys Ai video story ${index + 1}`} width="640" height="1138" loading="lazy" decoding="async"/>
       {/* Video extensions can inject an mtz-vlc class before React hydrates. */}
       <video suppressHydrationWarning ref={videoRef} className="story-player" src={story.video} poster={story.poster} title={`Client video testimonial ${index + 1}`} controls playsInline preload="none" aria-hidden={!playing} tabIndex={playing ? 0 : -1}/>
       <div className="story-preview-content" aria-hidden={playing}>

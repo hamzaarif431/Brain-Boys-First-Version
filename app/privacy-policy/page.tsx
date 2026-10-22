@@ -4,8 +4,8 @@ import { PrivacyPage } from '../../src/page-components/LegalPages'
 
 export const metadata: Metadata = {
   title: 'Privacy policy',
-  description: 'How Brainboys handles information when you use our website or contact our team.',
-  keywords: ['Brainboys privacy policy', 'website privacy'],
+  description: 'How BrainBoys Ai handles information when you use our website or contact our team.',
+  keywords: ['BrainBoys Ai privacy policy', 'website privacy'],
 }
 
 export default function Page() {
