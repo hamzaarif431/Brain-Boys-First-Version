@@ -83,7 +83,7 @@ export function CRMSpotlight({ motion }: { motion: boolean }) {
         <div className="crm-logo-stage">
           <div className="crm-logo-frame"><img src="/brainboys-crm-mark-transparent.png" alt="BrainBoys CRM brand mark" /></div>
           <span className="crm-floating-note note-one">AI AUTOMATION <b>↗︎</b></span>
-          <span className="crm-floating-note note-two">EVERYTHING. CONNECTED.</span>
+          <span className="crm-floating-note note-two">EVERYTHING CONNECTED</span>
           <div className="crm-dashboard-card" aria-hidden="true">
             <div className="crm-dashboard-head"><span><b>⌘</b> Growth overview</span><small>Illustrative dashboard</small></div>
             <div className="crm-dashboard-stats"><p><small>Pipeline value</small><strong>$24,850 <em>↗ 18.6%</em></strong></p><p><small>New leads</small><strong>128 <em>↗ 12.4%</em></strong></p></div>
@@ -96,8 +96,8 @@ export function CRMSpotlight({ motion }: { motion: boolean }) {
       <div className="crm-copy">
         <span className="crm-kicker"><i/> A BRAINIER WAY TO RUN YOUR BUSINESS</span>
         <span className="crm-overline">BrainBoys CRM / CONNECTED GROWTH</span>
-        <h2 id="crm-title">Bright minds.<br/>Better systems.<br/><em>Bigger possibilities.</em></h2>
-        <p>Your business has big ideas. BrainBoys CRM builds the connected system that brings them to life — capturing leads, nurturing relationships, closing deals and keeping every customer journey moving.</p>
+        <h2 id="crm-title">Bright minds<br/>Better systems<br/><em>Bigger possibilities</em></h2>
+        <p>Your business has big ideas, and BrainBoys CRM can build the systems to connect and bring those ideas to life. Whether it’s capturing leads, nurturing relationships, or closing deals, we keep your pipeline moving and your revenue growing.</p>
         <div className="crm-capabilities"><span>AI automation</span><span>BrainBoys CRM</span><span>Custom development</span></div>
         <a href="https://crm.brainboys.ai/" target="_blank" rel="noopener noreferrer">Explore BrainBoys CRM <span>↗︎</span></a>
       </div>
@@ -202,7 +202,8 @@ function ReviewsCTAContent({ audioSrc, unlocked }: { audioSrc?: string; unlocked
       <div className="reviews-cta-content">
         {unlocked ? <div className="reviews-audio-player" role="region" tabIndex={-1} aria-label="AI agent recording">
           <span className="eyebrow">BrainBoys AI / AI AGENT</span>
-          <h3>Your AI agent preview</h3>
+          <h3>Hear it in action</h3>
+          <p>A recorded conversation between a client and our AI agent</p>
           {audioSrc ? <audio controls preload="none" src={audioSrc}>Your browser does not support audio playback.</audio> : <><button className="audio-awaiting" disabled aria-label="Recording not available yet"><span aria-hidden="true">▶</span> Recording coming soon</button><p>Your access is unlocked. The recording will appear here when it is ready.</p></>}
         </div> : <button ref={callRef} type="button" className="reviews-agent-call" onClick={openOptIn} aria-label="Talk with Our AI Agent" aria-haspopup="dialog">
           <span className="reviews-agent-call-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.8 3.5 3.1 4.8 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.7 21 3 13.3 3 3.7c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.2Z"/></svg></span>

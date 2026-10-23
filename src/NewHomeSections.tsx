@@ -22,6 +22,25 @@ export function PricingSection() {
   const formName = isVirtualAssistant ? 'Virtual Assistant' : 'Project Based'
   const formHeight = isVirtualAssistant ? 901 : 944
 
+  // The introductory work-model tabs reuse these same package dialogs.
+  useEffect(() => {
+    const openRequestedForm = (event: Event) => {
+      const form = (event as CustomEvent<unknown>).detail
+      if (form === 'hourly') {
+        setPodFormReady(true)
+        setPodOpen(true)
+        podDialogRef.current?.showModal()
+      } else if (form === 'project') {
+        setActiveForm('project')
+        setProjectFormReady(true)
+        setProjectOpen(true)
+        projectDialogRef.current?.showModal()
+      }
+    }
+    window.addEventListener('brainboys:package-form', openRequestedForm)
+    return () => window.removeEventListener('brainboys:package-form', openRequestedForm)
+  }, [])
+
   useEffect(() => {
     if (!projectOpen && !podOpen) return
     const previousOverflow = document.body.style.overflow

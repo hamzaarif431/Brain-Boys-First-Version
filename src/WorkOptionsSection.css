@@ -1,0 +1,44 @@
+.work-options { align-items: center; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.work-options .reclaim-copy h2 { font-size: clamp(36px, 3.7vw, 64px); line-height: 1.12; letter-spacing: -.055em; }
+.work-options .reclaim-copy h2 em { color: var(--purple); font-style: normal; }
+.work-options .reclaim-copy > p { font-size: 16px; line-height: 1.9; max-width: 510px; }
+.work-options .reclaim-copy > .text-link { display: inline-flex; gap: 9px; margin-top: 28px; }
+.work-options .reclaim-signature { margin-top: 42px; }
+.work-options .reclaim-signature span { font-size: 10px; line-height: 1.9; letter-spacing: .12em; }
+.work-options-card { min-width: 0; padding: 30px; background: #fff; border: 1px solid #e0cff6; border-radius: 20px; box-shadow: 0 22px 65px #58289108; }
+.work-options-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; color: var(--purple); }
+.work-options-top .eyebrow { font-size: 10px; letter-spacing: .14em; }
+.work-options-top > span:last-child { font-size: 25px; }
+.work-options-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 6px; border-radius: 9px; background: #f2ecf9; }
+.work-options-tabs button { border: 0; background: transparent; border-radius: 6px; padding: 14px 6px; color: #82649a; font: inherit; font-size: 13px; cursor: pointer; }
+.work-options-tabs button[aria-selected=true] { background: #fff; color: var(--purple); box-shadow: 0 3px 12px #6a3d9210; }
+.work-options :focus-visible { outline: 2px solid var(--purple); outline-offset: 4px; }
+.work-options-panel h3 { margin: 27px 0 8px; color: var(--purple); font-size: 10px; font-weight: 500; letter-spacing: .12em; }
+.work-options-step { display: grid; grid-template-columns: 15px 31px minmax(0, 1fr); align-items: center; gap: 13px; min-height: 92px; padding: 18px 0; border-bottom: 1px dashed #e1d2f3; }
+.work-options-number { font: 9px monospace; color: #9273b2; }
+.work-options-check { display: grid; place-items: center; width: 31px; height: 31px; border-radius: 50%; background: #eff7da; color: #779445; }
+.work-options-step strong { display: block; color: #241638; font-size: 15px; font-weight: 550; line-height: 1.4; }
+.work-options-step p { margin: 6px 0 0; color: #806b94; font-size: 12px; line-height: 1.6; }
+.work-options-summary { display: flex; gap: 16px; margin-top: 24px; padding: 22px; border-radius: 9px; background: #f1eafa; color: var(--purple); min-height: 153px; }
+.work-options-summary > span { font-size: 28px; line-height: 1.2; }
+.work-options-summary strong { font-size: 15px; font-weight: 500; line-height: 1.5; }
+.work-options-summary p { margin: 6px 0 15px; color: #806b94; font-size: 12px; line-height: 1.5; }
+.work-options-summary button, .work-options-summary a { display: inline-block; border: 0; border-radius: 6px; background: #7124ed; color: white; font: inherit; font-size: 12px; padding: 11px 17px; text-decoration: none; cursor: pointer; }
+.work-options-summary button:hover, .work-options-summary a:hover { background: #5716bb; color: white; }
+.work-options-caption { margin: 20px 0 0; color: #856ba0; font-size: 9px; line-height: 1.7; letter-spacing: .06em; }
+.work-options-caption span { margin: 0 3px; }
+.hero-bottom .hero-value-line { display: block; margin-top: 16px; font-weight: 500; }
+@media (max-width: 1050px) { .work-options-card { padding: 22px; } .work-options-tabs button { font-size: 11px; } .work-options-step { gap: 9px; } }
+@media (max-width: 760px) {
+  .work-options { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .work-options .reclaim-copy h2 { font-size: clamp(34px, 8.7vw, 52px); }
+  .work-options .reclaim-copy > p { font-size: 15px; }
+  .work-options-card { padding: 22px 18px; border-radius: 16px; }
+  .work-options-tabs button { font-size: 11px; padding: 13px 4px; }
+  .work-options-step { min-height: 101px; grid-template-columns: 13px 28px minmax(0, 1fr); }
+  .work-options-check { width: 28px; height: 28px; }
+  .work-options-step strong { font-size: 14px; }
+  .work-options-step p { font-size: 12px; }
+  .work-options-summary { padding: 20px 16px; min-height: 165px; gap: 12px; }
+  .work-options-caption { font-size: 8px; letter-spacing: 0; }
+}
