@@ -4,8 +4,8 @@ import { TermsPage } from '../../src/page-components/LegalPages'
 
 export const metadata: Metadata = {
   title: 'Terms and conditions',
-  description: 'The terms that apply when you access and use the BrainBoys Ai website.',
-  keywords: ['BrainBoys Ai terms', 'website terms and conditions'],
+  description: 'The terms that apply when you access and use the BrainBoys AI website.',
+  keywords: ['BrainBoys AI terms', 'website terms and conditions'],
 }
 
 export default function Page() {

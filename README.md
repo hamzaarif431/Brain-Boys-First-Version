@@ -1,4 +1,4 @@
-# Brainboys AI website
+# BrainBoys AI website
 
 Next.js App Router + TypeScript + GSAP/ScrollTrigger. The site uses the original Brainboys icon throughout a light purple/lime design. The homepage and `/automation` both include the scroll-driven "One trigger. A whole business in motion." workflow before "THE CONNECTED ADVANTAGE." Its five scroll-activated nodes route work through the eight original automation tools, then reveal the supplied animated Brainboys GIF.
 

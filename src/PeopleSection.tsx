@@ -24,7 +24,7 @@ export default function PeopleSection() {
     <FounderStory/>
     <div className="internal-team-heading reveal"><div><span className="eyebrow">OUR INTERNAL TEAM</span><h3>Different minds.<br/><span className="serif">One shared standard.</span></h3></div><p>The people who turn the plan into progress. Your core team, connected from brief to delivery.</p></div>
     <div className="people-grid about-team-grid">{people.map((person, index) => <article className={`people-card${person.role === 'Chief Executive Officer' ? ' people-card-ceo' : ''}`} key={person.name}>
-      <img src={person.image} alt={`${person.name}, ${person.role} at BrainBoys Ai`} loading="lazy" width="640" height="800" />
+      <img src={person.image} alt={`${person.name}, ${person.role} at BrainBoys AI`} loading="lazy" width="640" height="800" />
       <div className="people-card-shade" />
       <span className="people-card-number">0{index + 1}</span>
       <div className="people-card-copy"><span className="people-card-role">{person.role}</span><h3>{person.name}</h3><p>Part of the core delivery team — matched to your stack from day one.</p></div>

@@ -192,7 +192,7 @@ export default function Workflow({ motion = true }: { motion?: boolean }) {
     <div className="tf2-sticky">
       <header className="tf2-heading">
         <span className="eyebrow"><i /> Never pay for agency &quot;bench time&quot; again.</span>
-        <h2 id="trigger-title">How BrainBoys Ai Works : <span className="serif">5 Steps to Pure Output</span></h2>
+        <h2 id="trigger-title">How BrainBoys AI Works : <span className="serif">5 Steps to Pure Output</span></h2>
         <div className="tf2-heading-actions"><p>One scroll moves one handoff forward.</p>{motion && <button type="button" className="tf2-skip" onClick={skipAnimation}>Skip animation <span>→</span></button>}</div>
       </header>
       <div className="tf2-viewport">
@@ -215,7 +215,7 @@ export default function Workflow({ motion = true }: { motion?: boolean }) {
       </div>
       <div className="tf2-finale-scroll">
         <div className="tf2-finale">
-          <canvas ref={canvasRef} className="tf2-gif" width="960" height="960" role="img" aria-label="BrainBoys Ai team and connected nodes forming the BrainBoys Ai name" />
+          <canvas ref={canvasRef} className="tf2-gif" width="960" height="960" role="img" aria-label="BrainBoys AI team and connected nodes forming the BrainBoys AI name" />
           <a href="/contact">Start Your Project <span className="ui-arrow" aria-hidden="true" /></a>
         </div>
       </div>

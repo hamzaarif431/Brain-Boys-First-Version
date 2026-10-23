@@ -31,12 +31,12 @@ export function SiteLoader() {
   }, [visible])
 
   if (!visible) return null
-  return <div className={`site-loader${leaving ? ' is-leaving' : ''}`} role="status" aria-live="polite" aria-label="BrainBoys Ai is loading">
+  return <div className={`site-loader${leaving ? ' is-leaving' : ''}`} role="status" aria-live="polite" aria-label="BrainBoys AI is loading">
     <div className="loader-glow" aria-hidden="true" />
     <div className="loader-orbit loader-orbit-one" aria-hidden="true"><i/><b/></div>
     <div className="loader-orbit loader-orbit-two" aria-hidden="true"><i/></div>
     <img className="loader-mark" src="/brainboys-mark.png" alt="" />
-    <div className="loader-copy"><span>BRILLIANT MINDS</span><strong>BrainBoys Ai<span>.</span></strong><small>CONNECTING PEOPLE × SYSTEMS × POSSIBILITY</small></div>
+    <div className="loader-copy"><span>BRILLIANT MINDS</span><strong>BrainBoys AI<span>.</span></strong><small>CONNECTING PEOPLE × SYSTEMS × POSSIBILITY</small></div>
     <div className="loader-progress" aria-hidden="true"><i/></div>
     <span className="loader-index">BB / 001</span>
   </div>
@@ -198,10 +198,10 @@ function ReviewsCTAContent({ audioSrc, unlocked }: { audioSrc?: string; unlocked
   }, [])
   return <section className="reviews-cta" id="reviews-proof" ref={sectionRef} aria-label="Client reviews and AI agent call">
     <div className="reviews-cta-sticky">
-      <div className="reviews-cta-media"><img className="reviews-cta-art" src="/brainboys-reviews-doodle.webp" width="1756" height="896" alt="A doodle wall of five-star client reviews for the BrainBoys Ai team"/></div>
+      <div className="reviews-cta-media"><img className="reviews-cta-art" src="/brainboys-reviews-doodle.webp" width="1756" height="896" alt="A doodle wall of five-star client reviews for the BrainBoys AI team"/></div>
       <div className="reviews-cta-content">
         {unlocked ? <div className="reviews-audio-player" role="region" tabIndex={-1} aria-label="AI agent recording">
-          <span className="eyebrow">BrainBoys Ai / AI AGENT</span>
+          <span className="eyebrow">BrainBoys AI / AI AGENT</span>
           <h3>Your AI agent preview</h3>
           {audioSrc ? <audio controls preload="none" src={audioSrc}>Your browser does not support audio playback.</audio> : <><button className="audio-awaiting" disabled aria-label="Recording not available yet"><span aria-hidden="true">▶</span> Recording coming soon</button><p>Your access is unlocked. The recording will appear here when it is ready.</p></>}
         </div> : <button ref={callRef} type="button" className="reviews-agent-call" onClick={openOptIn} aria-label="Talk with Our AI Agent" aria-haspopup="dialog">
@@ -239,12 +239,12 @@ export function SiteFooter({ isHome, motion, onToggleMotion }: { isHome: boolean
   return <footer className="footer" id="site-footer">
     <div className="footer-main">
       <div className="footer-brand-column">
-        <a className="footer-brand" href="/" aria-label="BrainBoys Ai home"><img src="/brainboys-mark.png" alt=""/><span>BrainBoys Ai</span></a>
+        <a className="footer-brand" href="/" aria-label="BrainBoys AI home"><img src="/brainboys-mark.png" alt=""/><span>BrainBoys AI</span></a>
         <p>Brilliant people and intelligent systems, connected around your next big move.</p>
         <div className="footer-socials">
-          <a href="https://www.linkedin.com/company/brainboys-ai/" target="_blank" rel="noopener noreferrer" aria-label="BrainBoys Ai on LinkedIn"><SocialIcon name="linkedin"/></a>
-          <a href="https://www.facebook.com/brainboysai/" target="_blank" rel="noopener noreferrer" aria-label="BrainBoys Ai on Facebook"><SocialIcon name="facebook"/></a>
-          <a href="https://www.instagram.com/brainboys.ai" target="_blank" rel="noopener noreferrer" aria-label="BrainBoys Ai on Instagram"><SocialIcon name="instagram"/></a>
+          <a href="https://www.linkedin.com/company/brainboys-ai/" target="_blank" rel="noopener noreferrer" aria-label="BrainBoys AI on LinkedIn"><SocialIcon name="linkedin"/></a>
+          <a href="https://www.facebook.com/brainboysai/" target="_blank" rel="noopener noreferrer" aria-label="BrainBoys AI on Facebook"><SocialIcon name="facebook"/></a>
+          <a href="https://www.instagram.com/brainboys.ai" target="_blank" rel="noopener noreferrer" aria-label="BrainBoys AI on Instagram"><SocialIcon name="instagram"/></a>
         </div>
       </div>
       <div className="footer-column"><span>PAGES</span><a href="/">Home</a><a href="/about-us">About us</a><a href="/services">Services</a><a href="/hire-a-team">Hire a team</a><a href="/automation">Automation</a><a href="/portfolio">Portfolio</a><a href="/contact">Contact</a></div>
@@ -252,7 +252,7 @@ export function SiteFooter({ isHome, motion, onToggleMotion }: { isHome: boolean
       <div className="footer-column"><span>LEGAL</span><a href="/privacy-policy">Privacy policy</a><a href="/terms-and-conditions">Terms & conditions</a></div>
       <div className="footer-column footer-contact"><span>LET&apos;S CONNECT</span><p>Address : 5203 Juan Tabo Blvd STE 2B<br/>Albuquerque New Mexico 87111</p><a href="tel:+18889057962">+1 888-905-7962</a><a href="mailto:support@brainboys.ai">Support@brainboys.ai</a><HomeCalendarLink className="footer-call">Book a strategy call <b className="ui-arrow" aria-hidden="true"/></HomeCalendarLink></div>
     </div>
-    <div className="footer-bottom"><span>© 2026 BrainBoys Ai AI. All rights reserved.</span><span>HUMAN INGENUITY. AMPLIFIED.</span><div><a href="/privacy-policy">Privacy</a><a href="/terms-and-conditions">Terms</a><button aria-pressed={motion} onClick={onToggleMotion}>Motion {motion ? 'on' : 'off'} <i className={motion ? 'on' : ''}/></button><a href={isHome ? '#home' : '#main-content'}>Back to top ↑</a></div></div>
+    <div className="footer-bottom"><span>© 2026 BrainBoys AI AI. All rights reserved.</span><span>HUMAN INGENUITY. AMPLIFIED.</span><div><a href="/privacy-policy">Privacy</a><a href="/terms-and-conditions">Terms</a><button aria-pressed={motion} onClick={onToggleMotion}>Motion {motion ? 'on' : 'off'} <i className={motion ? 'on' : ''}/></button><a href={isHome ? '#home' : '#main-content'}>Back to top ↑</a></div></div>
   </footer>
 }
 

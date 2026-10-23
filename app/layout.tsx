@@ -15,11 +15,11 @@ import '../src/FounderStory.css'
 
 export const metadata: Metadata = {
   title: {
-    default: 'BrainBoys Ai — Brilliant minds. One team.',
-    template: '%s — BrainBoys Ai',
+    default: 'BrainBoys AI — Brilliant minds. One team.',
+    template: '%s — BrainBoys AI',
   },
   description: 'Connected specialists and intelligent automation.',
-  keywords: ['BrainBoys Ai', 'AI automation', 'digital specialists', 'business growth'],
+  keywords: ['BrainBoys AI', 'AI automation', 'digital specialists', 'business growth'],
   icons: { icon: '/icon.png', shortcut: '/icon.png', apple: '/icon.png' },
 }
 

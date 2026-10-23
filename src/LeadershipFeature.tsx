@@ -9,7 +9,7 @@ const leaders = {
   ceo: {
     name: 'Muhammad Faraz', title: 'CHIEF EXECUTIVE OFFICER', image: '/muhammad-faraz-cutout-v2.png', width: 1122, height: 1402,
     eyebrow: 'LEADERSHIP, WITH A PERSONAL TOUCH',
-    description: 'Bringing people, technology and execution together. Muhammad Faraz leads BrainBoys Ai with a focus on connected systems, clear communication and work that moves your business forward.',
+    description: 'Bringing people, technology and execution together. Muhammad Faraz leads BrainBoys AI with a focus on connected systems, clear communication and work that moves your business forward.',
     focus: ['CRM & customer systems', 'AI & automation', 'Team & delivery'],
     note: 'ONE VISION.', promise: 'A team that feels like yours.',
   },
@@ -36,11 +36,11 @@ export default function LeadershipFeature({ role }: { role: keyof typeof leaders
 
   return <>
     <article className={`founder-feature founder-feature-${role} reveal`} aria-labelledby={`leader-${role}-title`}>
-      <div className="founder-portrait"><span className="founder-orbit" aria-hidden="true"/><img className="founder-photo" src={leader.image} alt={`${leader.name}, ${role.toUpperCase()} of BrainBoys Ai`} width={leader.width} height={leader.height} loading="lazy"/><div className="founder-nameplate"><span>{leader.title}</span><strong>{leader.name}</strong><img src="/brainboys-mark.png" width="48" height="48" alt=""/></div></div>
+      <div className="founder-portrait"><span className="founder-orbit" aria-hidden="true"/><img className="founder-photo" src={leader.image} alt={`${leader.name}, ${role.toUpperCase()} of BrainBoys AI`} width={leader.width} height={leader.height} loading="lazy"/><div className="founder-nameplate"><span>{leader.title}</span><strong>{leader.name}</strong><img src="/brainboys-mark.png" width="48" height="48" alt=""/></div></div>
       <div className="founder-copy"><span className="eyebrow"><i/>{leader.eyebrow}</span><h3 id={`leader-${role}-title`}>Meet the <span className="serif">{role.toUpperCase()}.</span></h3><p className="founder-intro">{leader.name}</p><p>{leader.description}</p><div className="founder-focus">{leader.focus.map(focus => <span key={focus}>{focus}</span>)}</div><div className="founder-bottom"><div><span>{leader.note}</span><strong>{leader.promise}</strong></div>{role === 'ceo' ? <button className="founder-contact" type="button" onClick={openCalendar} aria-haspopup="dialog">Let’s connect <span className="ui-arrow" aria-hidden="true"/></button> : <HomeCalendarLink className="founder-contact">Let’s connect <span className="ui-arrow" aria-hidden="true"/></HomeCalendarLink>}</div></div>
     </article>
     {role === 'ceo' && <dialog className="founder-calendar" ref={calendarRef} aria-labelledby="founder-calendar-title" onClose={() => setCalendarOpen(false)} onClick={event => { if (event.target === event.currentTarget) calendarRef.current?.close() }}>
-      <div className="founder-calendar-header booking-topbar"><div><img src="/brainboys-mark.png" alt="BrainBoys Ai" width="52" height="52"/><p><strong id="founder-calendar-title">BrainBoys Ai consultation</strong><small>30 minutes · With Muhammad Faraz</small></p></div><div className="founder-calendar-actions"><span className="founder-calendar-status"><i aria-hidden="true"/> Calendar live</span><button type="button" className="founder-calendar-close" onClick={() => calendarRef.current?.close()} aria-label="Close booking calendar">×</button></div></div>
+      <div className="founder-calendar-header booking-topbar"><div><img src="/brainboys-mark.png" alt="BrainBoys AI" width="52" height="52"/><p><strong id="founder-calendar-title">BrainBoys AI consultation</strong><small>30 minutes · With Muhammad Faraz</small></p></div><div className="founder-calendar-actions"><span className="founder-calendar-status"><i aria-hidden="true"/> Calendar live</span><button type="button" className="founder-calendar-close" onClick={() => calendarRef.current?.close()} aria-label="Close booking calendar">×</button></div></div>
       <div className="founder-calendar-body">{calendarReady && <ExternalEmbed src="https://api.brainboys.ai/widget/booking/GKgTE4I3nRlJlnZb0ID1" allow="payment" scrolling="no" id="GKgTE4I3nRlJlnZb0ID1_1792086109034" title="Book a call with Muhammad Faraz"/>}</div>
       <div className="booking-trust founder-calendar-trust"><span>🔒 Secure booking</span><span>✓ No commitment</span><span>✓ Confirmation sent instantly</span></div>
     </dialog>}

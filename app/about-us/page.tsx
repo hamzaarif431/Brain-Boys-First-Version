@@ -4,8 +4,8 @@ import AboutPage from '../../src/page-components/AboutPage'
 
 export const metadata: Metadata = {
   title: 'About us — The people behind the work',
-  description: 'Meet BrainBoys Ai founder Ahsan Bhaghdadi, CEO Muhammad Faraz and the team connecting specialist expertise with intelligent automation.',
-  keywords: ['about BrainBoys Ai', 'Ahsan Bhaghdadi founder', 'BrainBoys Ai team', 'Muhammad Faraz', 'AI automation company', 'on-demand specialists'],
+  description: 'Meet BrainBoys AI founder Ahsan Bhaghdadi, CEO Muhammad Faraz and the team connecting specialist expertise with intelligent automation.',
+  keywords: ['about BrainBoys AI', 'Ahsan Bhaghdadi founder', 'BrainBoys AI team', 'Muhammad Faraz', 'AI automation company', 'on-demand specialists'],
 }
 
 export default function Page() {

@@ -4,9 +4,9 @@ import SiteShell from '../../src/App'
 import { ContactPage } from '../../src/page-components/ContactPage'
 
 export const metadata: Metadata = {
-  title: 'Contact BrainBoys Ai',
-  description: 'Tell BrainBoys Ai what you are building and find the right specialist, team or automation path.',
-  keywords: ['contact BrainBoys Ai', 'book strategy call', 'hire BrainBoys Ai'],
+  title: 'Contact BrainBoys AI',
+  description: 'Tell BrainBoys AI what you are building and find the right specialist, team or automation path.',
+  keywords: ['contact BrainBoys AI', 'book strategy call', 'hire BrainBoys AI'],
 }
 
 export default function Page() {

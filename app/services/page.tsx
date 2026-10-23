@@ -4,8 +4,8 @@ import { ServicesPage } from '../../src/page-components/ServicesPage'
 
 export const metadata: Metadata = {
   title: 'Services and specialists',
-  description: 'Explore BrainBoys Ai specialists across automation, engineering, growth, creative and operations.',
-  keywords: ['BrainBoys Ai services', 'hire specialists', 'BrainBoys CRM experts', 'developers', 'creative team'],
+  description: 'Explore BrainBoys AI specialists across automation, engineering, growth, creative and operations.',
+  keywords: ['BrainBoys AI services', 'hire specialists', 'BrainBoys CRM experts', 'developers', 'creative team'],
 }
 
 export default function Page() {

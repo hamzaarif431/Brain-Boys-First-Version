@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: role.name,
     alternates: role.slug === 'brainboys-crm' ? { canonical: 'https://www.brainboys.ai/services/brainboys-crm' } : undefined,
     description: role.description,
-    keywords: [role.name, role.category, 'BrainBoys Ai specialist', 'hire remote expert'],
+    keywords: [role.name, role.category, 'BrainBoys AI specialist', 'hire remote expert'],
   }
 }
 
