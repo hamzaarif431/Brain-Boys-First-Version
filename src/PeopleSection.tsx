@@ -3,18 +3,18 @@
 import FounderStory from './FounderStory'
 
 const people = [
-  { name: 'Muhammad Faraz', role: 'Chief Executive Officer', image: '/muhammad-faraz-cutout-v2.png' },
-  { name: 'Muhammad Ahmed Ali', role: 'Chief Technical Officer', image: '/CTO.png' },
-  { name: 'Muhammad Asim', role: 'Business Development Manager', image: '/BDM.png' },
+  { name: 'Muhammad Faraz', role: 'Chief Executive Officer', image: '/muhammad-faraz-cutout-v2.png', details: 'Leads overall business operations, strategic planning, and organizational growth.' },
+  { name: 'Muhammad Ahmed Ali', role: 'Chief Technical Officer', image: '/CTO.png', details: 'Oversees technical strategy, system architecture, and technology implementation across projects.' },
+  { name: 'Muhammad Asim', role: 'Business Development Manager', image: '/BDM.png', details: 'Builds client relationships, identifies growth opportunities, and connects businesses with the right BrainBoys AI solutions.' },
 
-  { name: 'Mohammad Hamzah', role: 'Senior Account Manager', image: '/AM.png' },
-  { name: 'Fatima Ali', role: 'Senior Project Manager', image: '/SPM.png' },
+  { name: 'Mohammad Hamzah', role: 'Senior Account Manager', image: '/AM.png', details: 'Manages client relationships, understands business needs, and maintains clear communication throughout the engagement.' },
+  { name: 'Fatima Ali', role: 'Senior Project Manager', image: '/SPM.png', details: 'Plans and coordinates projects, managing priorities, timelines, resources, and deliverables.' },
 
-  { name: 'Umamah Nadeem', role: 'Social Media Manager', image: '/SMM.png' },
-  { name: 'Hamza Arif', role: 'AI Specialist', image: '/AI.png' },
-  { name: 'Sakina Ramza Jaafer', role: 'Outreach Expert', image: '/OE.png' },
-  { name: 'Mubeen Saleem', role: 'Wordpress Expert', image: '/WE.png' },
-  { name: 'Abdul Haseeb', role: 'Funnel Expert', image: '/FE.png' },
+  { name: 'Umamah Nadeem', role: 'Social Media Manager', image: '/SMM.png', details: 'Develops and manages social media strategies to strengthen brand awareness and online presence.' },
+  { name: 'Hamza Arif', role: 'AI Specialist', image: '/AI.png', details: 'Develops AI-powered solutions and intelligent automations that improve business efficiency.' },
+  { name: 'Sakina Ramza Jaafer', role: 'Outreach Expert', image: '/OE.png', details: 'Identifies relevant prospects and develops targeted outreach strategies to create new business opportunities.' },
+  { name: 'Mubeen Saleem', role: 'Wordpress Expert', image: '/WE.png', details: 'Builds, customizes, and maintains WordPress websites tailored to client requirements.' },
+  { name: 'Abdul Haseeb', role: 'Funnel Expert', image: '/FE.png', details: 'Designs and builds sales funnels that guide visitors from initial interest toward conversion.' },
 ]
 
 export default function PeopleSection() {
@@ -27,7 +27,7 @@ export default function PeopleSection() {
       <img src={person.image} alt={`${person.name}, ${person.role} at BrainBoys AI`} loading="lazy" width="640" height="800" />
       <div className="people-card-shade" />
       <span className="people-card-number">0{index + 1}</span>
-      <div className="people-card-copy"><span className="people-card-role">{person.role}</span><h3>{person.name}</h3><p>Part of the core delivery team — matched to your stack from day one.</p></div>
+      <div className="people-card-copy"><span className="people-card-role">{person.role}</span><h3>{person.name}</h3><p>{person.details}</p></div>
 
     </article>)}</div>
 

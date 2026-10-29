@@ -13,6 +13,8 @@ import '../src/AIBotsSection.css'
 import '../src/AboutPage.css'
 import '../src/FounderStory.css'
 import '../src/WorkOptionsSection.css'
+import '../src/WhyBrainBoysSection.css'
+import '../src/HomeFAQ.css'
 
 export const metadata: Metadata = {
   title: {

@@ -32,8 +32,8 @@ export default function AIBotsSection() {
 
   return <section className="ai-bots-section" id="ai-bots" aria-labelledby="ai-bots-title">
     <header className="ai-bots-heading reveal">
-      <div><span className="eyebrow"><i/> INTELLIGENCE, ON YOUR SIDE</span><h2 id="ai-bots-title">Small bots.<br/><span className="serif">Big possibilities.</span></h2></div>
-      <div className="ai-bots-intro"><p>Meet your next digital teammates. Purpose-built AI for your conversations, calls and the work that keeps your business moving.</p><span><i aria-hidden="true"/> YOUR TOOLS. YOUR BRAND. YOUR BOT.</span></div>
+      <div><span className="eyebrow"><i/> INTELLIGENCE, ON YOUR SIDE</span><h2 id="ai-bots-title">Tiny bots,<br/><span className="serif">Huge possibilities</span></h2></div>
+      <div className="ai-bots-intro"><p>Meet your new digital teammates. Purpose-built AI for all your work needs to keep your business moving</p><span><i aria-hidden="true"/> Built around your tools and your brand</span></div>
     </header>
     <div className="ai-bots-toolbar reveal"><span><b>THE BOT COLLECTION</b> / EXPLORE ALL {bots.length}</span><div className="stories-controls"><button type="button" onClick={() => slide(-1)} aria-label="Previous AI bot" aria-controls="ai-bots-slider"><SliderArrow/></button><button type="button" onClick={() => slide(1)} aria-label="Next AI bot" aria-controls="ai-bots-slider"><SliderArrow next/></button></div></div>
     <div className="ai-bots-track reveal" ref={trackRef} id="ai-bots-slider" tabIndex={0} role="region" aria-roledescription="carousel" aria-label="AI bots. Scroll horizontally to explore the collection.">

@@ -4,6 +4,7 @@ import { Suspense, useEffect, useLayoutEffect, useRef, useState, useSyncExternal
 import { usePathname } from 'next/navigation'
 import ExternalEmbed from './ExternalEmbed'
 import HomeCalendarLink from './HomeCalendarLink'
+import VoiceRecordingCard from './VoiceRecordingCard'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -105,7 +106,7 @@ export function CRMSpotlight({ motion }: { motion: boolean }) {
   </section>
 }
 
-export function ReviewsCTA({ audioSrc }: { audioSrc?: string } = {}) {
+export function ReviewsCTA({ audioSrc = '/audio/ai-agent-demo.wav' }: { audioSrc?: string } = {}) {
   return <Suspense fallback={<ReviewsCTAContent audioSrc={audioSrc} unlocked={false}/>}><ReviewsCTAAccess audioSrc={audioSrc}/></Suspense>
 }
 
@@ -151,9 +152,8 @@ function subscribeToHash(onChange: () => void) {
 }
 
 function ReviewsCTAContent({ audioSrc, unlocked }: { audioSrc?: string; unlocked: boolean }) {
-  const sectionRef = useRef<HTMLElement>(null)
   const dialogRef = useRef<HTMLDialogElement>(null)
-  const callRef = useRef<HTMLButtonElement>(null)
+  const triggerRef = useRef<HTMLElement | null>(null)
   const [formReady, setFormReady] = useState(false)
   const [optInOpen, setOptInOpen] = useState(false)
 
@@ -169,6 +169,7 @@ function ReviewsCTAContent({ audioSrc, unlocked }: { audioSrc?: string; unlocked
   }, [unlocked])
 
   const openOptIn = () => {
+    triggerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
     setFormReady(true)
     setOptInOpen(true)
     dialogRef.current?.showModal()
@@ -176,36 +177,14 @@ function ReviewsCTAContent({ audioSrc, unlocked }: { audioSrc?: string; unlocked
 
   const closeOptIn = () => {
     dialogRef.current?.close()
-    callRef.current?.focus()
+    triggerRef.current?.focus({ preventScroll: true })
   }
 
-  useLayoutEffect(() => {
-    const section = sectionRef.current
-    if (!section || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const ctx = gsap.context(() => {
-      const content = section.querySelector('.reviews-cta-content')!
-      gsap.set(content, { y: 65, autoAlpha: 0 })
-      const reveal = (visible: boolean) => gsap.to(content, { y: visible ? 0 : 65, autoAlpha: visible ? 1 : 0, duration: .55, ease: 'power3.out', overwrite: true })
-      ScrollTrigger.create({
-        trigger: section,
-        start: 'bottom bottom',
-        onEnter: () => reveal(true),
-        onLeaveBack: () => reveal(false),
-        onRefresh: self => reveal(self.scroll() >= self.start),
-      })
-    }, section)
-    return () => ctx.revert()
-  }, [])
-  return <section className="reviews-cta" id="reviews-proof" ref={sectionRef} aria-label="Client reviews and AI agent call">
+  return <section className="reviews-cta" id="reviews-proof" aria-label="Client reviews and AI agent recording">
     <div className="reviews-cta-sticky">
       <div className="reviews-cta-media"><img className="reviews-cta-art" src="/brainboys-reviews-doodle.webp" width="1756" height="896" alt="A doodle wall of five-star client reviews for the BrainBoys AI team"/></div>
       <div className="reviews-cta-content">
-        {unlocked ? <div className="reviews-audio-player" role="region" tabIndex={-1} aria-label="AI agent recording">
-          <span className="eyebrow">BrainBoys AI / AI AGENT</span>
-          <h3>Hear it in action</h3>
-          <p>A recorded conversation between a client and our AI agent</p>
-          {audioSrc ? <audio controls preload="none" src={audioSrc}>Your browser does not support audio playback.</audio> : <><button className="audio-awaiting" disabled aria-label="Recording not available yet"><span aria-hidden="true">▶</span> Recording coming soon</button><p>Your access is unlocked. The recording will appear here when it is ready.</p></>}
-        </div> : <button ref={callRef} type="button" className="reviews-agent-call" onClick={openOptIn} aria-label="Talk with Our AI Agent" aria-haspopup="dialog">
+        {unlocked ? <VoiceRecordingCard audioSrc={audioSrc} unlocked onUnlock={openOptIn}/> : <button type="button" className="reviews-agent-call" onClick={openOptIn} aria-label="Talk with Our AI Agent" aria-haspopup="dialog">
           <span className="reviews-agent-call-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.8 3.5 3.1 4.8 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.7 21 3 13.3 3 3.7c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.2Z"/></svg></span>
           <span>Talk with Our<br/><strong>AI Agent</strong></span>
         </button>}

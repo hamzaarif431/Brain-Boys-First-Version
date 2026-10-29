@@ -7,13 +7,13 @@ gsap.registerPlugin(ScrollTrigger)
 const steps = [
   {
     label: '01 — SUBMIT YOUR BRIEF', type: 'PROJECT BRIEF', node: 'Request received', icon: '↗︎', status: 'Received',
-    title: 'Tell us what you need done.',
+    title: 'Tell us what you need done',
     text: 'Share your project scope, from GHL and n8n automations to API integrations or web builds.',
     tools: ['BrainBoys CRM', 'Web Development'],
   },
   {
     label: '02 — GET MATCHED', type: 'TEAM PLACEMENT', node: 'Experts assigned', icon: '≡', status: 'Assigned',
-    title: 'Matched in 48 hours or less.',
+    title: 'Matched in 48 hours or less',
     text: 'Get a fixed scope, clear timeline, and exact cost upfront. We assign the right developers, automators, or marketers within 48 hours.',
     tools: ['Fixed Pricing', 'Expert Team'],
   },

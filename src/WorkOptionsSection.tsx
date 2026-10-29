@@ -58,9 +58,8 @@ export default function WorkOptionsSection() {
       {options.map((option, index) => <div key={option.label} role="tabpanel" id={`${id}-panel-${index}`} aria-labelledby={`${id}-tab-${index}`} hidden={active !== index} tabIndex={0} className="work-options-panel">
         <h3>{option.heading}</h3>
         <div className="work-options-steps">{option.steps.map(([title, subtitle], step) => <div className="work-options-step" key={title}><span className="work-options-number">0{step + 1}</span><span className="work-options-check" aria-hidden="true">{step === 2 ? '↗︎' : '✓'}</span><div><strong>{title}</strong><p>{subtitle}</p></div></div>)}</div>
-        <div className="work-options-summary"><span aria-hidden="true">✧</span><div><strong>{option.summary}</strong><p>{option.detail}</p>{option.form ? <button type="button" aria-haspopup="dialog" onClick={() => window.dispatchEvent(new CustomEvent('brainboys:package-form', { detail: option.form }))}>{option.action}</button> : <HomeCalendarLink>{option.action}</HomeCalendarLink>}</div></div>
+        {index > 0 && <div className="work-options-summary"><span aria-hidden="true">✧</span><div><strong>{option.summary}</strong><p>{option.detail}</p>{option.form ? <button type="button" aria-haspopup="dialog" onClick={() => window.dispatchEvent(new CustomEvent('brainboys:package-form', { detail: option.form }))}>{option.action}</button> : <HomeCalendarLink>{option.action}</HomeCalendarLink>}</div></div>}
       </div>)}
-      <p className="work-options-caption">PAY AS YOU GO <span>•</span> DEDICATED VA <span>•</span> PROJECT-BASED</p>
     </div>
   </section>
 }
